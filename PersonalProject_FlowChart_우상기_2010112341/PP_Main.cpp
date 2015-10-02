@@ -5,12 +5,12 @@ Personal Project
 Make Siren Order using Flow Chart
 */
 
-#include <stdio.h>
-#include <string.h>
-#include <windows.h>
+#include <stdio.h> // Standard Input Output Header
+#include <string.h> // String Header
+#include <windows.h> // Windows OS Header
 #include <time.h> // Sleep(500)
-#include <stdlib.h>
-#include <conio.h>
+#include <stdlib.h> // Standard Library Header
+#include <conio.h> // Console Input Output Error
 
 /*
 회원정보 내용 저장 구조체 만들기
