@@ -5,12 +5,14 @@ Personal Project
 Make Siren Order using Flow Chart
 */
 
-#include <stdio.h> // Standard Input Output Header
-#include <string.h> // String Header
-#include <windows.h> // Windows OS Header
-#include <time.h> // Sleep(500)
-#include <stdlib.h> // Standard Library Header
-#include <conio.h> // Console Input Output Error
+#include <stdio.h>		// Standard Input Output Header
+#include <string.h>		// String Header
+#include <windows.h>	// Windows OS Header
+#include <time.h>		// Sleep(500)
+#include <stdlib.h>		// Standard Library Header
+#include <conio.h>		// Console Input Output Error
+
+#include "functions.h"	// Header file for functions
 
 /*
 회원정보 내용 저장 구조체 만들기
@@ -45,47 +47,6 @@ struct member
 	//char cup[10];
 };
 
-/*
-메뉴 목록을 표시하는 함수 만들기
-*/
-void Menulist(void)
-{
-	printf("1. 아메리카노 (Americano)\n");
-	printf("2. 카페 라떼 (Caffe Latte)\n");
-	printf("3. 카페 모카 (Caffe Mocha)\n");
-	printf("4. 바닐라 크림 프라푸치노 (Vanilla Frappuccino Blended Creme)\n");
-	printf("5. 딸기 크림 프라푸치노 (Strawberries & Creme Frappuccino Blended Creme)\n");
-}
-
-/*
-음료 사이즈 관련 함수 만들기
-*/
-void Size(void)
-{
-	printf("\n1. Tall Size (355ml, 12oz) \n");
-	printf("2. Grande Size (473ml, 16oz) \n");
-	printf("3. Venti Size (591ml, 20oz) \n");
-}
-
-/*
-옵션 리스트
-*/
-void Option(void)
-{
-	
-	printf("\n1. 커피 \n2. Espresso Choice \n3. 시럽 \n4. 베이스 & 기타 \n");
-	printf("5. 얼음 \n6. 휘핑 \n7. 드리즐 \n");
-
-}
-
-/*
-Option 양 리스트
-*/
-void Option_Mag(void)
-{
-	printf("1. 적게 \n2. 보통 \n3. 많이 \n4. 없이 \n");
-}
-
 
 /////////////////////////////////////////////////////////////////////////////////
 //MAIN
@@ -96,7 +57,7 @@ int main(void)
 
 	int totalprice = 0;
 	int start;
-	int i; //Option 회귀 변수
+	int i=0; //Option 회귀 변수
 	int optre = 1;
 	//int pomin;
 
