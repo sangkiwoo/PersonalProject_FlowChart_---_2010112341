@@ -41,6 +41,7 @@ struct member
 	char pch = 0;
 	char optag;
 	char *opt_sy_name;
+	char *opt_bo_name;
 	//char cup[10];
 };
 
@@ -393,7 +394,7 @@ Option 선택유무 결정하기
 						/////////////////////////////
 
 
-						break;
+						//break;
 					}//if (mem1.opt1 == 1)//커피 샷추가
 
 					else if (mem1.opt1 == 2)//Espresso Choice
@@ -459,15 +460,16 @@ Option 선택유무 결정하기
 						printf("1. 물 \n2. 리드 \n3. 기타 \n");
 						scanf_s("%d", &mem1.opt_bo);
 						
-						if (mem1.opt_bo == 1)
+						if (mem1.opt_bo == 1)//물 선택
 						{
 							system("cls");
-							printf("");////////////
+
+							printf("%s", mem1.opt_bo_name);////////////
 							Option_Mag();
 
 						}
 					}
-					break;
+					//break;
 				}//while (optre != 0)
 				
 			}
