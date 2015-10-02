@@ -29,6 +29,9 @@ struct member
 	int valuepoint = 20000;
 	int pomin;
 	int cash;
+	int opt_sy;
+	int opt_sy_time; // 시럽 옵션 추가횟수
+	int opt_bo;	//Base & Other Option
 
 	char *menuname;
 	char *hclabel;
@@ -37,6 +40,7 @@ struct member
 	char nick[100];
 	char pch = 0;
 	char optag;
+	char *opt_sy_name;
 	//char cup[10];
 };
 
@@ -71,6 +75,14 @@ void Option(void)
 	printf("\n1. 커피 \n2. Espresso Choice \n3. 시럽 \n4. 베이스 & 기타 \n");
 	printf("5. 얼음 \n6. 휘핑 \n7. 드리즐 \n");
 
+}
+
+/*
+Option 양 리스트
+*/
+void Option_Mag(void)
+{
+	printf("1. 적게 \n2. 보통 \n3. 많이 \n4. 없이 \n");
 }
 
 
@@ -348,9 +360,10 @@ Option 선택유무 결정하기
 					if (mem1.opt1 == 1)//커피 샷추가
 					{
 						system("cls");
-						printf("샷 추가. 0~9까지 가능하십니다. 원하는 값을 입력해주세요. \n");
+						printf("샷 추가. 0~9번 추가 가능하십니다. 원하는 값을 입력해주세요. \n");
 						scanf_s("%d", &mem1.opt2);
 						totalprice += mem1.opt2 * 600;
+						printf("샷 추가를 %d 회 하셨습니다.\n", mem1.opt2);
 
 						///////////////////////////////////////////////////////////////////
 						//함수 써서 나타내자.
@@ -412,8 +425,48 @@ Option 선택유무 결정하기
 							}
 						}//while(1)
 					}//else if
-					//////////////////////////}
+					else if (mem1.opt1 == 3) // 시럽 추가
+					{
+						system("cls");
+						printf("시럽 추가. 0~9까지 가능하십니다. 원하시는 시럽에 해당하는 번호 입력해주세요. \n");
+						printf("1. 바닐라 시럽 \n2. 헤이즐럿 시럽 \n3. 카라멜 시럽 \n4. 허니바닐라 시럽\n");
+						scanf_s("%d", &mem1.opt_sy);
+						if (mem1.opt_sy == 1)
+						{
+							mem1.opt_sy_name = "바닐라 시럽";
+						}
+						else if (mem1.opt_sy == 2)
+						{
+							mem1.opt_sy_name = "헤이즐럿 시럽";
+						}
+						else if (mem1.opt_sy == 3)
+						{
+							mem1.opt_sy_name = "카라멜 시럽";
+						}
+						else if (mem1.opt_sy == 4)
+						{
+							mem1.opt_sy_name = "허니바닐라 시럽";
+						}
+						printf("%s 시럽을 선택하셨습니다. 0~9번 추가 가능하십니다. 원하는 값을 입력해주세요. \n", mem1.opt_sy_name);
+						scanf_s("%d", &mem1.opt_sy_time);
+						totalprice += mem1.opt_sy_time * 600;
+						printf("%s 추가를 %d 회 하셨습니다.\n", mem1.opt_sy_name, mem1.opt_sy_time);
+					}
+					else if (mem1.opt1 == 4) // Base & Others
+					{
+						system("cls");
+						printf("원하시는 옵션의 번호를 입력해주세요. \n");
+						printf("1. 물 \n2. 리드 \n3. 기타 \n");
+						scanf_s("%d", &mem1.opt_bo);
+						
+						if (mem1.opt_bo == 1)
+						{
+							system("cls");
+							printf("");////////////
+							Option_Mag();
 
+						}
+					}
 					break;
 				}//while (optre != 0)
 				
