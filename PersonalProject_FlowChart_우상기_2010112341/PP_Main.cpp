@@ -1,5 +1,5 @@
 /*
-우 상기(SANGKI, WOO) / 2010112341
+우 상기(SANGKI, WOO) / 2010112341 / 2015
 
 Personal Project
 Make Siren Order using Flow Chart
@@ -637,7 +637,7 @@ input 정보 출력
 END
 */
 		printf("사이렌 오더(Siren Order)를 이용해주셔서 감사합니다! \n");
-
+		system("PAUSE"); // to prevent a console to be closed immediately
 
 
 
