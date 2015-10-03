@@ -428,7 +428,7 @@ Option 선택유무 결정하기
 							printf("%s를 선택하셨습니다. 세부 옵션을 선택해주세요.\n", mem1.opt_bo_name);////////////
 							Option_Mag();
 
-							sacnf_s("%d", &mem1.opt_bo_mag);
+							//sacnf_s("%d", &mem1.opt_bo_mag);
 
 
 						}
