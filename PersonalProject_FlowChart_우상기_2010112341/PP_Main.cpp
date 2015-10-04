@@ -1255,7 +1255,7 @@ input 정보 출력
 END
 */
 		printf("사이렌 오더(Siren Order)를 이용해주셔서 감사합니다! \n");
-
+		system("PAUSE"); // Wait to exit program till the key input
 
 
 
