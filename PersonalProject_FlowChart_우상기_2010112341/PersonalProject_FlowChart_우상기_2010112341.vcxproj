@@ -11,7 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="functions.cpp" />
     <ClCompile Include="PP_Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="functions.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0CAC98B4-7376-474B-B0BC-EDF27BA01D3F}</ProjectGuid>

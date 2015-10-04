@@ -22,7 +22,7 @@ struct member
 	char name[50];	//회원 이름
 
 	int point;	//포인트카드 적립금
-	int yesmem;	//회원 유무
+	int yesmem=0;	//회원 유무
 	int menunum;	//메뉴 번호
 	int hc;	//HOT/COOL
 	int sizenum;
@@ -31,9 +31,17 @@ struct member
 	int valuepoint = 20000;
 	int pomin;
 	int cash;
-	int opt_sy;
+	int opt_sy;	//시럽 옵션
 	int opt_sy_time; // 시럽 옵션 추가횟수
 	int opt_bo;	//Base & Other Option
+	int opt_bo_mag;// Base & Other magnitude
+	int opt_sy_rep; //시럽 반복
+	int opt_ice_mag;
+	int opt_whip_rep;
+	int opt_whip;
+	int opt_driz_rep;
+	int opt_driz;
+	int opt_driz_mag;
 
 	char *menuname;
 	char *hclabel;
@@ -44,7 +52,20 @@ struct member
 	char optag;
 	char *opt_sy_name;
 	char *opt_bo_name;
-	//char cup[10];
+	char *opt_bo_subname;
+	char opt_sy_again;
+	char opt_lid;
+	char *opt_lid_name;
+	char opt_milk;
+	char *opt_milk_name;
+	char *opt_ice_name;
+	char *opt_ice_subname;
+	char *opt_whip_name;
+	char *opt_whip_subname;
+	char *opt_driz_name;
+	char *opt_driz_subname;
+	char *opt_driz_sizename;
+	char opt_driz_again;
 };
 
 
@@ -252,7 +273,7 @@ HOT/COOL 선택하기
 			system("cls");
 			printf("잘못 입력하셨습니다. 다시 입력해주세요.\n");
 		}
-	}
+	}//while (1)
 	printf("%s %s 음료를 선택하셨습니다. \n", mem1.hclabel, mem1.menuname);
 
 /* STEP 06
@@ -298,7 +319,6 @@ SIZE 선택하기
 /* STEP 07
 Option 선택유무 결정하기
 */
-		//while (mem1.opt1 != 0)
 		while (1)
 		{
 			printf("퍼스널 옵션으로 나만의 음료를 만드시겠습니까? \n");
@@ -313,129 +333,718 @@ Option 선택유무 결정하기
 					system("cls");
 					printf("퍼스널 옵션으로 나만의 음료 만들기 \n");
 					printf("원하시는 옵션에 해당하는 번호를 입력하세요. \n");
-					Option();
-					////////////////////////////////////////////////////////////////////////////////////////
-					// 옵션 선택으로 들어갑니다. 
-					/////////////////////////////////////////////
-					scanf_s("%d", &mem1.opt1);// , sizeof(mem1.opt1));
-
-					if (mem1.opt1 == 1)//커피 샷추가
+					while (1)
 					{
-						system("cls");
-						printf("샷 추가. 0~9번 추가 가능하십니다. 원하는 값을 입력해주세요. \n");
-						scanf_s("%d", &mem1.opt2);
-						totalprice += mem1.opt2 * 600;
-						printf("샷 추가를 %d 회 하셨습니다.\n", mem1.opt2);
 
-						///////////////////////////////////////////////////////////////////
-						//함수 써서 나타내자.
-						while (1)//bb는 상수여도 괜찮음!
-						{
-							getchar();
-							printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
-							scanf_s("%c", &mem1.optag, sizeof(mem1.optag));
-							if (mem1.optag == 'Y' || mem1.optag == 'y')
-							{
-								optre = 1;
-								printf("AGAIN \n");
-								break;
-							}
-							else if (mem1.optag == 'N' || mem1.optag == 'n')
-							{
-								optre = 0;
-								break;
-							}
-							else
-							{
-								system("cls");
-								printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
-							}
-							//break;
-						}
-						/////////////////////////////
-
-
-						//break;
-					}//if (mem1.opt1 == 1)//커피 샷추가
-
-					else if (mem1.opt1 == 2)//Espresso Choice
-					{
-						system("cls");
-						while (1)
-						{
-
-							printf("1. 과테말라 \n2. Esp.C(과테말라) \n");
-							scanf_s("%d", &mem1.opt3);
-
-							if (mem1.opt3 == 1)
-							{
-								system("cls");
-								printf("'과테말라'를 선택하셨습니다. \n");
-								break;
-							}
-							else if (mem1.opt3 == 2)
-							{
-								system("cls");
-								printf("'Esp.C'를 선택하셨습니다. \n");
-								totalprice += 300;
-								break;
-							}
-							else
-							{
-								system("cls");
-								printf("잘못 입력하셨습니다. \n");
-							}
-						}//while(1)
-					}//else if
-					else if (mem1.opt1 == 3) // 시럽 추가
-					{
-						system("cls");
-						printf("시럽 추가. 0~9까지 가능하십니다. 원하시는 시럽에 해당하는 번호 입력해주세요. \n");
-						printf("1. 바닐라 시럽 \n2. 헤이즐럿 시럽 \n3. 카라멜 시럽 \n4. 허니바닐라 시럽\n");
-						scanf_s("%d", &mem1.opt_sy);
-						if (mem1.opt_sy == 1)
-						{
-							mem1.opt_sy_name = "바닐라 시럽";
-						}
-						else if (mem1.opt_sy == 2)
-						{
-							mem1.opt_sy_name = "헤이즐럿 시럽";
-						}
-						else if (mem1.opt_sy == 3)
-						{
-							mem1.opt_sy_name = "카라멜 시럽";
-						}
-						else if (mem1.opt_sy == 4)
-						{
-							mem1.opt_sy_name = "허니바닐라 시럽";
-						}
-						printf("%s 시럽을 선택하셨습니다. 0~9번 추가 가능하십니다. 원하는 값을 입력해주세요. \n", mem1.opt_sy_name);
-						scanf_s("%d", &mem1.opt_sy_time);
-						totalprice += mem1.opt_sy_time * 600;
-						printf("%s 추가를 %d 회 하셨습니다.\n", mem1.opt_sy_name, mem1.opt_sy_time);
-					}
-					else if (mem1.opt1 == 4) // Base & Others
-					{
-						system("cls");
-						printf("원하시는 옵션의 번호를 입력해주세요. \n");
-						printf("1. 물 \n2. 리드 \n3. 기타 \n");
-						scanf_s("%d", &mem1.opt_bo);
 						
-						if (mem1.opt_bo == 1)//물 선택
+						Option();
+						////////////////////////////////////////////////////////////////////////////////////////
+						// 옵션 선택으로 들어갑니다. 
+						/////////////////////////////////////////////
+						scanf_s("%d", &mem1.opt1);// , sizeof(mem1.opt1));
+
+						if (mem1.opt1 == 1)//커피 샷추가
 						{
 							system("cls");
+							printf("샷 추가. 0~9번 추가 가능하십니다. 원하는 값을 입력해주세요. \n");
+							scanf_s("%d", &mem1.opt2);
+							totalprice += mem1.opt2 * 600;
+							printf("샷 추가를 %d 회 하셨습니다.\n", mem1.opt2);
 
-							printf("%s를 선택하셨습니다. 세부 옵션을 선택해주세요.\n", mem1.opt_bo_name);////////////
+							///////////////////////////////////////////////////////////////////
+							//함수 써서 나타내자.
+							while (1)//bb는 상수여도 괜찮음!
+							{
+								getchar();
+								printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
+								scanf_s("%c", &mem1.optag, sizeof(mem1.optag));
+								if (mem1.optag == 'Y' || mem1.optag == 'y')
+								{
+									optre = 1;
+									break;
+								}
+								else if (mem1.optag == 'N' || mem1.optag == 'n')
+								{
+									optre = 0;
+									break;
+								}
+								else
+								{
+									system("cls");
+									printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
+								}
+								//break;
+							}//반복 while(1)
+							break;
+						}//if (mem1.opt1 == 1)//커피 샷추가
+
+						else if (mem1.opt1 == 2)//Espresso Choice
+						{
+							system("cls");
+							while (1)
+							{
+
+								printf("1. 과테말라 \n2. Esp.C(과테말라) \n");
+								scanf_s("%d", &mem1.opt3);
+
+								if (mem1.opt3 == 1)//과테말라
+								{
+									system("cls");
+									printf("'과테말라'를 선택하셨습니다. \n");
+									while (1)//bb는 상수여도 괜찮음!
+									{
+										getchar();
+										printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
+										scanf_s("%c", &mem1.optag, sizeof(mem1.optag));
+										if (mem1.optag == 'Y' || mem1.optag == 'y')
+										{
+											optre = 1;
+											break;
+										}
+										else if (mem1.optag == 'N' || mem1.optag == 'n')
+										{
+											optre = 0;
+											break;
+										}
+										else
+										{
+											system("cls");
+											printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
+										}
+										break;
+									}//반복 while(1)
+									break; 
+								}
+								
+								else if (mem1.opt3 == 2)	//Esp.C
+								{
+									system("cls");
+									printf("'Esp.C'를 선택하셨습니다. \n");
+									totalprice += 300;
+									while (1)//bb는 상수여도 괜찮음!
+									{
+										getchar();
+										printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
+										scanf_s("%c", &mem1.optag, sizeof(mem1.optag));
+										if (mem1.optag == 'Y' || mem1.optag == 'y')
+										{
+											optre = 1;
+											printf("AGAIN \n");
+											break;
+										}
+										else if (mem1.optag == 'N' || mem1.optag == 'n')
+										{
+											optre = 0;
+											break;
+										}
+										else
+										{
+											system("cls");
+											printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
+										}
+										break;
+									}//반복 while(1)
+									break;
+								}
+								else
+								{
+									system("cls");
+									printf("잘못 입력하셨습니다. \n");
+								}
+							}//while(1)
+							break;
+						}//else if
+
+						//	시럽 추가	////////////////////////////////////////////////////////////////////////////////////////
+						else if (mem1.opt1 == 3)
+						{
+							system("cls");
+							printf("시럽 추가. 0~9까지 가능하십니다. 원하시는 시럽에 해당하는 번호 입력해주세요. \n");
+							while (mem1.opt_sy_rep != 0)
+							{
+								system("cls");
+								//printf("시럽 추가. 0~9까지 가능하십니다. 원하시는 시럽에 해당하는 번호 입력해주세요. \n");
+								printf("1. 바닐라 시럽 \n2. 헤이즐럿 시럽 \n3. 카라멜 시럽 \n4. 허니바닐라 시럽\n");
+
+								while (1)
+								{
+									getchar();
+									scanf_s("%d", &mem1.opt_sy);
+
+									if (mem1.opt_sy == 1)
+									{
+										mem1.opt_sy_name = "바닐라 시럽";
+										break;
+									}
+									else if (mem1.opt_sy == 2)
+									{
+										mem1.opt_sy_name = "헤이즐럿 시럽";
+										break;
+									}
+									else if (mem1.opt_sy == 3)
+									{
+										mem1.opt_sy_name = "카라멜 시럽";
+										break;
+									}
+									else if (mem1.opt_sy == 4)
+									{
+										mem1.opt_sy_name = "허니바닐라 시럽";
+										break;
+									}
+									else
+									{
+										printf("잘못 입력하셨습니다. 제대로 입력해주세요. \n");
+										mem1.opt_sy_name = "";
+									}
+								}//while(1)
+
+								system("cls");
+								printf("%s 시럽을 선택하셨습니다. 0~9번 추가 가능하십니다. 원하는 값을 입력해주세요. \n", mem1.opt_sy_name);
+								scanf_s("%d", &mem1.opt_sy_time);
+								totalprice += mem1.opt_sy_time * 600;
+								printf("%s 추가를 %d 회 하셨습니다.\n", mem1.opt_sy_name, mem1.opt_sy_time);
+
+								getchar();
+								printf("또 다른 시럽을 추가하시겠습니까? (Y/N) \n");
+
+								while (1)
+								{
+									scanf_s("%c", &mem1.opt_sy_again, sizeof(mem1.opt_sy_again));
+
+									if (mem1.opt_sy_again == 'Y' || mem1.opt_sy_again == 'y')
+									{
+										mem1.opt_sy_rep = 1;
+										break;
+									}
+									else if (mem1.opt_sy_again == 'N' || mem1.opt_sy_again == 'n')
+									{
+										mem1.opt_sy_rep = 0;
+										break;
+									}
+									else
+									{
+										printf("잘못 입력하셨습니다. 제대로 입력해주세요. \n");
+									}
+								}//while(1) 
+							}//while (mem1.opt_sy_rep != 0)
+
+							while (1)//bb는 상수여도 괜찮음!
+							{
+								getchar();
+								printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
+								scanf_s("%c", &mem1.optag, sizeof(mem1.optag));
+								if (mem1.optag == 'Y' || mem1.optag == 'y')
+								{
+									optre = 1;
+									printf("AGAIN \n");
+									break;
+								}
+								else if (mem1.optag == 'N' || mem1.optag == 'n')
+								{
+									optre = 0;
+									break;
+								}
+								else
+								{
+									system("cls");
+									printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
+								}
+								break;
+							}//반복 while(1)
+							break;
+						}//else if (mem1.opt1 == 3) 
+
+
+						else if (mem1.opt1 == 4) // Base & Others
+						{
+							system("cls");
+							printf("원하시는 옵션의 번호를 입력해주세요. \n");
+							printf("1. 물 \n2. 리드 \n3. 기타 \n");
+							scanf_s("%d", &mem1.opt_bo);
+
+							if (mem1.opt_bo == 1)//물 선택
+							{
+								system("cls");
+								mem1.opt_bo_name = "물";
+
+								printf("%s를 선택하셨습니다. 세부 옵션을 선택해주세요.\n", mem1.opt_bo_name);////////////
+								Option_Mag();
+								while (1)
+								{
+									getchar();
+									scanf_s("%d", &mem1.opt_bo_mag, sizeof(mem1.opt_bo_mag));
+
+									if (mem1.opt_bo_mag == 1) //적게
+									{
+										mem1.opt_bo_subname = "적게";
+										break;
+									}
+									else if (mem1.opt_bo_mag == 2)	//보통
+									{
+										mem1.opt_bo_subname = "보통";
+										break;
+									}
+									else if (mem1.opt_bo_mag == 3)	//많이
+									{
+										mem1.opt_bo_subname = "많이";
+										break;
+									}
+									else if (mem1.opt_bo_mag == 4)	//없이
+									{
+										mem1.opt_bo_subname = "없이";
+										break;
+									}
+									else
+									{
+										printf("잘못 입력하셨습니다. 제대로 입력해주세요. \n");
+										mem1.opt_bo_subname = "";
+									}
+									//printf("%s", mem1.opt_bo_subname);
+									//break;
+								}//while(1)
+								system("cls");
+								printf("%s를 선택하셨습니다. \n", mem1.opt_bo_subname);
+
+								while (1)//bb는 상수여도 괜찮음!
+								{
+									getchar();
+									printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
+									scanf_s("%c", &mem1.optag, sizeof(mem1.optag));
+									if (mem1.optag == 'Y' || mem1.optag == 'y')
+									{
+										optre = 1;
+										printf("AGAIN \n");
+										break;
+									}
+									else if (mem1.optag == 'N' || mem1.optag == 'n')
+									{
+										optre = 0;
+										break;
+									}
+									else
+									{
+										system("cls");
+										printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
+									}
+									break;
+								}//반복 while(1)
+								//break;
+								//Sleep(10000);
+							}//if (mem1.opt_bo == 1)//물 선택
+
+							if (mem1.opt_bo == 2)//리드 선택
+							{
+								system("cls");
+								mem1.opt_bo_name = "리드";
+
+								printf("%s를 선택하셨습니다. 세부 옵션을 선택해주세요.\n", mem1.opt_bo_name);////////////
+
+								while (1)
+								{
+									getchar();
+									printf("돔리드(Dome Lid)로 변경하시겠습니까? (Y/N)\n");
+									//printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
+									scanf_s("%c", &mem1.opt_lid, sizeof(mem1.opt_lid));
+									if (mem1.opt_lid == 'Y' || mem1.opt_lid == 'y')
+									{
+										mem1.opt_lid_name = "돔리드(Dome Lid)";
+										break;
+									}
+									else if (mem1.opt_lid == 'N' || mem1.opt_lid == 'n')
+									{
+										mem1.opt_lid_name = "플랫리드(Flat Lid)";
+										break;
+									}
+									else
+									{
+										system("cls");
+										printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
+									}
+									break;
+								}//while(1)
+								system("cls");
+
+								printf("%s를 선택하셨습니다. \n", mem1.opt_lid_name);
+
+								while (1)
+								{
+									getchar();
+									printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
+									scanf_s("%c", &mem1.optag, sizeof(mem1.optag));
+									if (mem1.optag == 'Y' || mem1.optag == 'y')
+									{
+										optre = 1;
+										printf("AGAIN \n");
+										break;
+									}
+									else if (mem1.optag == 'N' || mem1.optag == 'n')
+									{
+										optre = 0;
+										break;
+									}
+									else
+									{
+										system("cls");
+										printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
+									}
+									break;
+								}//반복 while(1)
+								
+							}//if (mem1.opt_bo == 2)//리드 선택
+							
+							if (mem1.opt_bo == 3)//기타 선택
+							{
+								system("cls");
+								mem1.opt_bo_name = "기타";
+
+								printf("%s를 선택하셨습니다. 세부 옵션을 선택해주세요.\n", mem1.opt_bo_name);////////////
+
+								while (1)
+								{
+									getchar();
+									printf("우유공간을 남겨주세요. (Y/N)\n");
+									//printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
+									scanf_s("%c", &mem1.opt_milk, sizeof(mem1.opt_milk));
+									if (mem1.opt_milk == 'Y' || mem1.opt_milk == 'y')
+									{
+										mem1.opt_milk_name = "남깁니다.";
+										break;
+									}
+									else if (mem1.opt_milk == 'N' || mem1.opt_milk == 'n')
+									{
+										mem1.opt_milk_name = "남기지 않습니다.";
+										break;
+									}
+									else
+									{
+										system("cls");
+										printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
+									}
+									//break;
+								}//while(1)
+								system("cls");
+								printf("우유공간을 %s \n", mem1.opt_milk_name);
+
+
+
+								while (1)
+								{
+									getchar();
+									printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
+									scanf_s("%c", &mem1.optag, sizeof(mem1.optag));
+									if (mem1.optag == 'Y' || mem1.optag == 'y')
+									{
+										optre = 1;
+										printf("AGAIN \n");
+										break;
+									}
+									else if (mem1.optag == 'N' || mem1.optag == 'n')
+									{
+										optre = 0;
+										break;
+									}
+									else
+									{
+										system("cls");
+										printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
+									}
+									break;
+								}//반복 while(1)
+
+							}//if (mem1.opt_bo == 2)//리드 선택
+							break;
+						}//	else if (mem1.opt1 == 4) // Base & Others
+
+						else if (mem1.opt1 == 5) // 얼음
+						{
+							system("cls");
+							mem1.opt_ice_name = "얼음";
+
+							printf("%s 옵션을 선택하셨습니다. 세부 옵션을 선택해주세요.\n", mem1.opt_ice_name);////////////
 							Option_Mag();
+							while (1)
+							{
+								getchar();
+								scanf_s("%d", &mem1.opt_ice_mag, sizeof(mem1.opt_ice_mag));
 
-							//sacnf_s("%d", &mem1.opt_bo_mag);
+								if (mem1.opt_ice_mag == 1) //적게
+								{
+									mem1.opt_ice_subname = "적게";
+									break;
+								}
+								else if (mem1.opt_ice_mag == 2)	//보통
+								{
+									mem1.opt_ice_subname = "보통";
+									break;
+								}
+								else if (mem1.opt_ice_mag == 3)	//많이
+								{
+									mem1.opt_ice_subname = "많이";
+									break;
+								}
+								else if (mem1.opt_ice_mag == 4)	//없이
+								{
+									mem1.opt_ice_subname = "없이";
+									break;
+								}
+								else
+								{
+									printf("잘못 입력하셨습니다. 제대로 입력해주세요. \n");
+									mem1.opt_ice_subname = "";
+								}
+								//printf("%s", mem1.opt_bo_subname);
+								//break;
+							}//while(1)
+							system("cls");
+							printf("%s를 선택하셨습니다. \n", mem1.opt_ice_subname);
+
+							while (1)//bb는 상수여도 괜찮음!
+							{
+								getchar();
+								printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
+								scanf_s("%c", &mem1.optag, sizeof(mem1.optag));
+								if (mem1.optag == 'Y' || mem1.optag == 'y')
+								{
+									optre = 1;
+									printf("AGAIN \n");
+									break;
+								}
+								else if (mem1.optag == 'N' || mem1.optag == 'n')
+								{
+									optre = 0;
+									break;
+								}
+								else
+								{
+									system("cls");
+									printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
+								}
+								break;
+							}//반복 while(1)
+							break;
+						}//	else if (mem1.opt1 == 5) // 얼음
+
+						else if (mem1.opt1 == 6)//휘핑 옵션
+						{
+							system("cls");
+							mem1.opt_whip_name = "휘핑크림";
+							//mem1.opt_ice_name = "얼음";
+							printf("%s 옵션을 선택하셨습니다. 원하시는 휘핑에 해당하는 번호 입력해주세요. \n", mem1.opt_whip_name);
+
+							while (mem1.opt_whip_rep != 0)
+							{
+								//system("cls");
+								//printf("시럽 추가. 0~9까지 가능하십니다. 원하시는 시럽에 해당하는 번호 입력해주세요. \n");
+								printf("1. 일반 휘핑 \n2. 두유 휘핑 \n3. 초콜릿 휘핑 \n4. 에스프레소 휘핑 \n");
+
+								while (1)
+								{
+									getchar();
+									scanf_s("%d", &mem1.opt_whip);
+
+									if (mem1.opt_whip == 1)
+									{
+										mem1.opt_whip_subname = "일반 휘핑";
+										break;
+									}
+									else if (mem1.opt_whip == 2)
+									{
+										mem1.opt_whip_subname = "두유 휘핑";
+										totalprice += 600;
+										break;
+									}
+									else if (mem1.opt_whip == 3)
+									{
+										mem1.opt_whip_subname = "초콜릿 휘핑";
+										totalprice += 600;
+										break;
+									}
+									else if (mem1.opt_whip == 4)
+									{
+										mem1.opt_whip_subname = "에스프레소 휘핑";
+										totalprice += 600;
+										break;
+									}
+									else
+									{
+										printf("잘못 입력하셨습니다. 제대로 입력해주세요. \n");
+										mem1.opt_whip_subname = "";
+									}
+								}//while(1)
+
+								system("cls");
+								printf("%s을 선택하셨습니다. \n", mem1.opt_whip_subname);
+								break;
+							}//while (mem1.opt_whip_rep != 0)
+
+							while (1)
+							{
+								getchar();
+								printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
+								scanf_s("%c", &mem1.optag, sizeof(mem1.optag));
+								if (mem1.optag == 'Y' || mem1.optag == 'y')
+								{
+									optre = 1;
+									printf("AGAIN \n");
+									break;
+								}
+								else if (mem1.optag == 'N' || mem1.optag == 'n')
+								{
+									optre = 0;
+									break;
+								}
+								else
+								{
+									system("cls");
+									printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
+								}
+								break;
+							}//반복 while(1)
+							break;
+						}//else if (mem1.opt1 == 6)//휘핑 옵션
+
+						else if (mem1.opt1 == 7) //Drizzle Option
+						{
+							system("cls");
+							mem1.opt_driz_name = "드리즐";
+							//mem1.opt_ice_name = "얼음";
+							printf("%s 옵션을 선택하셨습니다. 원하시는 드리즐에 해당하는 번호 입력해주세요. \n", mem1.opt_driz_name);
+
+							while (mem1.opt_driz_rep != 0)
+							{
+								printf("1. 카라멜 플랑 드리즐 \n2. 카라멜 드리즐 \n3. 초콜릿 드리즐 \n");
+
+								while (1)
+								{
+									getchar();
+									scanf_s("%d", &mem1.opt_driz);
+
+									if (mem1.opt_driz == 1)
+									{
+										mem1.opt_driz_subname = "카라멜 플랑";
+										totalprice += 600;
+										break;
+									}
+									else if (mem1.opt_driz == 2)
+									{
+										mem1.opt_driz_subname = "카라멜";
+										totalprice += 600;
+										break;
+									}
+									else if (mem1.opt_driz == 3)
+									{
+										mem1.opt_driz_subname = "초콜릿";
+										totalprice += 600;
+										break;
+									}
+									else
+									{
+										printf("잘못 입력하셨습니다. 제대로 입력해주세요. \n");
+										mem1.opt_driz_subname = "";
+									}
+								}//while(1)
+
+								system("cls");
+								//printf("%s을 선택하셨습니다. \n", mem1.opt_driz_subname);
+								//break;
 
 
+								printf("%s 드리즐을 선택하셨습니다. 세부 옵션을 선택해주세요.\n", mem1.opt_driz_subname);////////////
+								Option_Mag();
+								while (1)
+								{
+									getchar();
+									scanf_s("%d", &mem1.opt_driz_mag, sizeof(mem1.opt_driz_mag));
+
+									if (mem1.opt_driz_mag == 1) //적게
+									{
+										mem1.opt_driz_sizename = "적게";
+										break;
+									}
+									else if (mem1.opt_driz_mag == 2)	//보통
+									{
+										mem1.opt_driz_sizename = "보통";
+										break;
+									}
+									else if (mem1.opt_driz_mag == 3)	//많이
+									{
+										mem1.opt_driz_sizename = "많이";
+										break;
+									}
+									else if (mem1.opt_driz_mag == 4)	//없이
+									{
+										mem1.opt_driz_sizename = "없이";
+										break;
+									}
+									else
+									{
+										printf("잘못 입력하셨습니다. 제대로 입력해주세요. \n");
+										mem1.opt_driz_sizename = "";
+									}
+
+								}//while(1)
+								system("cls");
+								printf("%s드리즐을 %s 만큼 선택하셨습니다. \n", mem1.opt_driz_subname, mem1.opt_driz_sizename);
+
+								getchar();
+								printf("또 다른 드리즐을 추가하시겠습니까? (Y/N) \n");
+
+								while (1)
+								{
+									scanf_s("%c", &mem1.opt_driz_again, sizeof(mem1.opt_driz_again));
+
+									if (mem1.opt_driz_again == 'Y' || mem1.opt_driz_again == 'y')
+									{
+										mem1.opt_driz_rep = 1;
+										break;
+									}
+									else if (mem1.opt_driz_again == 'N' || mem1.opt_driz_again == 'n')
+									{
+										mem1.opt_driz_rep = 0;
+										break;
+									}
+									else
+									{
+										printf("잘못 입력하셨습니다. 제대로 입력해주세요. \n");
+									}
+								}//while(1) 
+							}//while (mem1.opt_whip_rep != 0)
+
+							while (1)
+							{
+								getchar();
+								printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
+								scanf_s("%c", &mem1.optag, sizeof(mem1.optag));
+								if (mem1.optag == 'Y' || mem1.optag == 'y')
+								{
+									optre = 1;
+									printf("AGAIN \n");
+									break;
+								}
+								else if (mem1.optag == 'N' || mem1.optag == 'n')
+								{
+									optre = 0;
+									break;
+								}
+								else
+								{
+									system("cls");
+									printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
+								}
+								break;
+							}//반복 while(1)
+							break;
+						}//else if (mem1.opt1 == 7) //드리즐 옵션
+
+						else
+						{
+							system("cls");
+							printf("잘못 입력하셨습니다. 원하시는 옵션의 번호를 제대로 다시 눌러주세요. \n");
 						}
 					}
-					//break;
-				}//while (optre != 0)
 				
+				}//while (optre != 0)
+				break;
 			}
 			else if (mem1.opt == 2) //퍼스널 옵션 선택 안 함
 			{
@@ -446,7 +1055,7 @@ Option 선택유무 결정하기
 				system("cls");
 				printf("잘못 입력하셨습니다! \n");
 			}
-		}//while(1)
+		}//Option while(1)
 
 /* STEP 08
 Option List 결정하기
@@ -526,7 +1135,16 @@ input 정보 출력
 /* STEP 15
 최종 가격정보 출력
 */
-		//system("cls");
+		//회원이고 옵션을 선택했으면 1회 extra무료
+		if (mem1.yesmem == 1 && mem1.opt == 1)
+		{
+			totalprice -= 600;
+		}
+		else
+		{
+			totalprice -= 0;
+		}
+
 		printf("\n최종 결제금액은 %d입니다. \n\n", totalprice);
 
 
