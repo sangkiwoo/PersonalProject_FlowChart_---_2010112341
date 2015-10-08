@@ -15,14 +15,14 @@ Make Siren Order using Flow Chart
 #include "functions.h"	// Header file for functions
 
 /*
-회원정보 내용 저장 구조체 만들기
+음료 내용 저장 구조체 만들기
 */
-struct member
+struct drink //member //dri
 {
-	
+
 
 	int point;	//포인트카드 적립금
-	int yesmem=0;	//회원 유무
+	int yesmem = 0;	//회원 유무
 	int menunum;	//메뉴 번호
 	int hc;	//HOT/COOL
 	int sizenum;
@@ -82,20 +82,20 @@ struct member
 /////////////////////////////////////////////////////////////////////////////////
 int main(void)
 {
-	struct member mem[3];
+	struct drink bev[3];//beverage
 	system("mode con: lines=25 cols=80");
 
 	int totalprice = 0;
 	int start;
-	int i; //drink increase - mem[i]
+	int i; //drink increase - bev[i]
 	int optre = 1;
 
 	int again;
 
-/*	STEP 01
-Siren Order 시작하기
-*/
-	
+	/*	STEP 01
+	Siren Order 시작하기
+	*/
+
 
 	printf("스타벅스 Siren Order를 시작합니다! \n\n");
 	//꾸미자!!
@@ -124,159 +124,159 @@ Siren Order 시작하기
 		}
 	}
 
-	
+
 	for (i = 0; i < 3;)
 	{
+		\
+			/*	STEP 02
+			고객 이름 입력받기
+			*/
 
-/*	STEP 02
-고객 이름 입력받기
-*/
-
-	printf("고객님의 이름을 입력해주세요. \n");
-	printf("(기존 회원 : 유인나, 아이유, 박보영) \n");
-	scanf_s("%s", mem[i].name, sizeof(mem[i].name));
-	//	scanf_s함수는 scanf함수와 달리 문자와 문자열에 대해서는 저장공간의 크기값도 같이 줘야 합니다.
-	system("cls");	//콘솔창 화면 지우기
+			printf("고객님의 이름을 입력해주세요. \n");
+		printf("(기존 회원 : 유인나, 아이유, 박보영) \n");
+		scanf_s("%s", bev[i].name, sizeof(bev[i].name));
+		//	scanf_s함수는 scanf함수와 달리 문자와 문자열에 대해서는 저장공간의 크기값도 같이 줘야 합니다.
+		system("cls");	//콘솔창 화면 지우기
 
 
-/*	STEP 03	
-회원 유무 확인하기
-*/
-	if (!strcmp(mem[i].name, mem[i].name_m1))
-	{
-		mem[i].yesmem = 1;	//회원임을 기억함.
-		mem[i].valuepoint = 100000;
-		printf("환영합니다! %s님! \n%s님께서는 골드 레벨 회원 이십니다! \n", mem[i].name_m1, mem[i].name_m1);
-		printf("회원이시므로 무료 extra 1회 가능하십니다. \n\n");
-		printf("%s님께서 가지고계신 적립 포인트는 %d점 입니다. \n\n", mem[i].name_m1, mem[i].valuepoint);
-		printf("\n원하시는 메뉴를 고르시고 해당 메뉴의 번호를 입력해주세요. \n\n");
-	}
-	else if (!strcmp(mem[i].name, mem[i].name_m2))
-	{
-		mem[i].yesmem = 1;
-		mem[i].valuepoint = 80000;
-		printf("환영합니다! %s님! \n%s님께서는 그린 레벨 회원 이십니다! \n", mem[i].name_m2, mem[i].name_m2);
-		printf("회원이시므로 무료 extra 1회 가능하십니다. \n\n");
-		printf("%s님께서 가지고계신 적립 포인트는 %d점 입니다. \n\n", mem[i].name_m2, mem[i].valuepoint);
-		printf("\n원하시는 메뉴를 고르시고 해당 메뉴의 번호를 입력해주세요. \n\n");
-	}
-	else if (!strcmp(mem[i].name, mem[i].name_m3))
-	{
-		mem[i].yesmem = 1;
-		mem[i].valuepoint = 60000;
-		printf("환영합니다! %s님! \n%s님께서는 웰컴 레벨 회원 이십니다! \n", mem[i].name_m3, mem[i].name_m3);
-		printf("회원이시므로 무료 extra 1회 가능하십니다. \n\n");
-		printf("%s님께서 가지고계신 적립 포인트는 %d점 입니다. \n\n", mem[i].name_m3, mem[i].valuepoint);
-		printf("\n원하시는 메뉴를 고르시고 해당 메뉴의 번호를 입력해주세요. \n\n");
-	}
-	else
-	{
-		printf("환영합니다! %s님! \n\n%s 님은 스타벅스 회원이십니까? (Y/N) \n", mem[i].name, mem[i].name);
-		printf("회원의 경우 무료 extra 1회 가능하십니다. \n");
+		/*	STEP 03
+		회원 유무 확인하기
+		*/
+		if (!strcmp(bev[i].name, bev[i].name_m1))
+		{
+			bev[i].yesmem = 1;	//회원임을 기억함.
+			bev[i].valuepoint = 100000;
+			printf("환영합니다! %s님! \n%s님께서는 골드 레벨 회원 이십니다! \n", bev[i].name_m1, bev[i].name_m1);
+			printf("회원이시므로 무료 extra 1회 가능하십니다. \n\n");
+			printf("%s님께서 가지고계신 적립 포인트는 %d점 입니다. \n\n", bev[i].name_m1, bev[i].valuepoint);
+			printf("\n원하시는 메뉴를 고르시고 해당 메뉴의 번호를 입력해주세요. \n\n");
+		}
+		else if (!strcmp(bev[i].name, bev[i].name_m2))
+		{
+			bev[i].yesmem = 1;
+			bev[i].valuepoint = 80000;
+			printf("환영합니다! %s님! \n%s님께서는 그린 레벨 회원 이십니다! \n", bev[i].name_m2, bev[i].name_m2);
+			printf("회원이시므로 무료 extra 1회 가능하십니다. \n\n");
+			printf("%s님께서 가지고계신 적립 포인트는 %d점 입니다. \n\n", bev[i].name_m2, bev[i].valuepoint);
+			printf("\n원하시는 메뉴를 고르시고 해당 메뉴의 번호를 입력해주세요. \n\n");
+		}
+		else if (!strcmp(bev[i].name, bev[i].name_m3))
+		{
+			bev[i].yesmem = 1;
+			bev[i].valuepoint = 60000;
+			printf("환영합니다! %s님! \n%s님께서는 웰컴 레벨 회원 이십니다! \n", bev[i].name_m3, bev[i].name_m3);
+			printf("회원이시므로 무료 extra 1회 가능하십니다. \n\n");
+			printf("%s님께서 가지고계신 적립 포인트는 %d점 입니다. \n\n", bev[i].name_m3, bev[i].valuepoint);
+			printf("\n원하시는 메뉴를 고르시고 해당 메뉴의 번호를 입력해주세요. \n\n");
+		}
+		else
+		{
+			printf("환영합니다! %s님! \n\n%s 님은 스타벅스 회원이십니까? (Y/N) \n", bev[i].name, bev[i].name);
+			printf("회원의 경우 무료 extra 1회 가능하십니다. \n");
 
+			while (1)
+			{
+				getchar();
+				scanf_s("%c", &bev[i].membership, sizeof(bev[i].membership));
+
+				if (bev[i].membership == 'Y' || bev[i].membership == 'y')
+				{
+					system("cls");
+					bev[i].yesmem = 1;
+					printf("%s님! \n원하시는 메뉴를 고르시고 해당 메뉴의 번호를 입력해주세요. \n\n", bev[i].name);
+					break;
+				}
+
+				else if (bev[i].membership == 'N' || bev[i].membership == 'n')
+				{
+					system("cls");
+					bev[i].yesmem = 0;	//비회원임을 기억함.
+					printf("%s님! \n원하시는 메뉴를 고르시고 해당 메뉴의 번호를 입력해주세요. \n\n", bev[i].name);
+					break;
+				}
+				else
+				{
+					system("cls");
+					printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n스타벅스 회원이십니까? (Y/N) \n");
+				}
+			}
+		}
+
+
+		/* STEP 04
+		메뉴 선택하기
+		*/
 		while (1)
 		{
-			getchar();
-			scanf_s("%c", &mem[i].membership, sizeof(mem[i].membership));
+			Menulist(); //함수를 이용하여 메뉴 목록 표시
 
-			if (mem[i].membership == 'Y' || mem[i].membership == 'y')
+			getchar();
+			scanf_s("%d", &bev[i].menunum);
+			printf("%d", bev[i].menunum);
+			system("cls");
+
+			if (bev[i].menunum == 1)	//Americano
 			{
-				system("cls");
-				mem[i].yesmem = 1;
-				printf("%s님! \n원하시는 메뉴를 고르시고 해당 메뉴의 번호를 입력해주세요. \n\n", mem[i].name);
+				totalprice += 4100;
+				bev[i].menuname = "아메리카노(Americano)";
 				break;
 			}
-
-			else if (mem[i].membership == 'N' || mem[i].membership == 'n')
+			else if (bev[i].menunum == 2)	//Caffe Latte
 			{
-				system("cls");
-				mem[i].yesmem = 0;	//비회원임을 기억함.
-				printf("%s님! \n원하시는 메뉴를 고르시고 해당 메뉴의 번호를 입력해주세요. \n\n", mem[i].name);
+				totalprice += 4600;
+				bev[i].menuname = "카페 라떼 (Caffe Latte)";
+				break;
+			}
+			else if (bev[i].menunum == 3) //Caffe Mocha
+			{
+				totalprice += 5100;
+				bev[i].menuname = "카페 모카 (Caffe Mocha)";
+				break;
+			}
+			else if (bev[i].menunum == 4)	//Vanilla Frappuccino Blended Creme
+			{
+				totalprice += 4800;
+				bev[i].menuname = "바닐라 크림 프라푸치노 (Vanilla Frappuccino Blended Creme)";
+				break;
+			}
+			else if (bev[i].menunum == 5)	//Strawberries & Creme Frappuccino Blended Creme
+			{
+				totalprice += 5600;
+				bev[i].menuname = "딸기 크림 프라푸치노 (Strawberries & Creme Frappuccino Blended Creme)";
 				break;
 			}
 			else
 			{
 				system("cls");
-				printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n스타벅스 회원이십니까? (Y/N) \n");
+				printf("잘못된 번호를 입력하셨습니다. 올바른 번호를 눌러주세요. \n\n");
 			}
-		}
-	}
+
+		}	//while(1)
+		printf("음료 %s를 선택하셨습니다. \n", bev[i].menuname);
 
 
-/* STEP 04
-메뉴 선택하기
-*/
-	while (1)
-	{
-		Menulist(); //함수를 이용하여 메뉴 목록 표시
+		/* STEP 05
+		HOT/COOL 선택하기
+		*/
 
-		getchar();
-		scanf_s("%d", &mem[i].menunum);
-		printf("%d", mem[i].menunum);
-		system("cls");
-
-		if (mem[i].menunum == 1)	//Americano
+		//HOT / COOL 선택 가능한 경우
+		while (1)
 		{
-			totalprice += 4100;
-			mem[i].menuname = "아메리카노(Americano)";
-			break;
-		}
-		else if (mem[i].menunum == 2)	//Caffe Latte
-		{
-			totalprice += 4600;
-			mem[i].menuname = "카페 라떼 (Caffe Latte)";
-			break;
-		}
-		else if (mem[i].menunum == 3) //Caffe Mocha
-		{
-			totalprice += 5100;
-			mem[i].menuname = "카페 모카 (Caffe Mocha)";
-			break;
-		}
-		else if (mem[i].menunum == 4)	//Vanilla Frappuccino Blended Creme
-		{
-			totalprice += 4800;
-			mem[i].menuname = "바닐라 크림 프라푸치노 (Vanilla Frappuccino Blended Creme)";
-			break;
-		}
-		else if (mem[i].menunum == 5)	//Strawberries & Creme Frappuccino Blended Creme
-		{
-			totalprice += 5600;
-			mem[i].menuname = "딸기 크림 프라푸치노 (Strawberries & Creme Frappuccino Blended Creme)";
-			break;
-		}
-		else 
-		{
-			system("cls");
-			printf("잘못된 번호를 입력하셨습니다. 올바른 번호를 눌러주세요. \n\n");
-		}
-		
-	}	//while(1)
-		printf("음료 %s를 선택하셨습니다. \n", mem[i].menuname);
+			if (bev[i].menunum == 1 || bev[i].menunum == 2 || bev[i].menunum == 3)
+			{
+				printf("\nHOT / COOL을 고르신 뒤 해당 번호를 눌러주세요. \n\n1. HOT \n2. COOL \n");
+				scanf_s("%d", &bev[i].hc);
 
-
-/* STEP 05
-HOT/COOL 선택하기
-*/
-
-	//HOT / COOL 선택 가능한 경우
-	while (1)
-	{
-		if (mem[i].menunum == 1 || mem[i].menunum == 2 || mem[i].menunum == 3)
-		{
-			printf("\nHOT / COOL을 고르신 뒤 해당 번호를 눌러주세요. \n\n1. HOT \n2. COOL \n");
-			scanf_s("%d", &mem[i].hc);
-
-				if (mem[i].hc == 1)
+				if (bev[i].hc == 1)
 				{
 					system("cls");
-					mem[i].hclabel = "HOT";
+					bev[i].hclabel = "HOT";
 					break;
 				}
-				else if (mem[i].hc == 2)
+				else if (bev[i].hc == 2)
 				{
 					system("cls");
-					mem[i].hclabel = "COOL";
+					bev[i].hclabel = "COOL";
 					break;
 				}
 				else
@@ -285,53 +285,53 @@ HOT/COOL 선택하기
 					printf("잘못 입력하셨습니다. 다시 입력해주세요.\n");
 				}
 
-		}//if (mem1.menunum == 1 || mem1.menunum == 2 || mem1.menunum == 3)
+			}//if (mem1.menunum == 1 || mem1.menunum == 2 || mem1.menunum == 3)
 
-		//COOL만 선택 가능한 경우
-		else if (mem[i].menunum == 4 || mem[i].menunum == 5)
-		{
-			system("cls");
-			mem[i].hclabel = "COOL";
-			printf("프라푸치노(Frappuccino) 메뉴의 경우 COOL음료만 주문 가능합니다. \n");
-			break;
+			//COOL만 선택 가능한 경우
+			else if (bev[i].menunum == 4 || bev[i].menunum == 5)
+			{
+				system("cls");
+				bev[i].hclabel = "COOL";
+				printf("프라푸치노(Frappuccino) 메뉴의 경우 COOL음료만 주문 가능합니다. \n");
+				break;
 
-		}
-		else
-		{
-			system("cls");
-			printf("잘못 입력하셨습니다. 다시 입력해주세요.\n");
-		}
-	}//while (1)
-	printf("음료 %s %s 를 선택하셨습니다. \n", mem[i].hclabel, mem[i].menuname);
+			}
+			else
+			{
+				system("cls");
+				printf("잘못 입력하셨습니다. 다시 입력해주세요.\n");
+			}
+		}//while (1)
+		printf("음료 %s %s 를 선택하셨습니다. \n", bev[i].hclabel, bev[i].menuname);
 
-/* STEP 06
-SIZE 선택하기
-*/
+		/* STEP 06
+		SIZE 선택하기
+		*/
 		printf("\n음료의 사이즈를 결정해주세요. \n");
-		
+
 		while (1)
 		{
 			Size(); //함수를 이용 사이즈 리스트 불러옴
 			getchar();
-			scanf_s("%d", &mem[i].sizenum);
-			printf("%d", mem[i].sizenum);
+			scanf_s("%d", &bev[i].sizenum);
+			printf("%d", bev[i].sizenum);
 			system("cls");
 
-			if (mem[i].sizenum == 1)
+			if (bev[i].sizenum == 1)
 			{
-				mem[i].size_name = "Tall Size";
+				bev[i].size_name = "Tall Size";
 				totalprice = totalprice + 0;
 				break;
 			}
-			if (mem[i].sizenum == 2)
+			if (bev[i].sizenum == 2)
 			{
-				mem[i].size_name = "Grande Size";
+				bev[i].size_name = "Grande Size";
 				totalprice = totalprice + 500;
 				break;
 			}
-			else if (mem[i].sizenum == 3)
+			else if (bev[i].sizenum == 3)
 			{
-				mem[i].size_name = "Venti Size";
+				bev[i].size_name = "Venti Size";
 				totalprice = totalprice + 1000;
 				break;
 			}
@@ -341,135 +341,73 @@ SIZE 선택하기
 				totalprice = totalprice + 0;
 			}
 		}
-		printf("음료 %s %s %s 를 선택하셨습니다. \n", mem[i].size_name, mem[i].hclabel, mem[i].menuname);
-		
-/* STEP 07
-Option 선택유무 결정하기
-*/
+		printf("음료 %s %s %s 를 선택하셨습니다. \n", bev[i].size_name, bev[i].hclabel, bev[i].menuname);
+
+		/* STEP 07
+		Option 선택유무 결정하기
+		*/
 		while (1)
 		{
 			printf("퍼스널 옵션으로 나만의 음료를 만드시겠습니까? \n");
 			printf("\n1. 예, 옵션을 선택합니다. \n2. 아니요, 옵션을 선택하지 않습니다. \n");
-			scanf_s("%d", &mem[i].opt_choice);
+			scanf_s("%d", &bev[i].opt_choice);
 
-			if (mem[i].opt_choice == 1)//퍼스널 옵션 선택함
+			if (bev[i].opt_choice == 1)//퍼스널 옵션 선택함
 			{
 				while (optre != 0)
 				{
 					system("cls");
 					printf("퍼스널 옵션으로 나만의 음료 만들기 \n");
 					printf("원하시는 옵션에 해당하는 번호를 입력하세요. \n");
-					
+
 					while (1)
-					{						
+					{
 						Option();
-						scanf_s("%d", &mem[i].opt1);
+						scanf_s("%d", &bev[i].opt1);
 
-						if (mem[i].opt1 == 1)//커피 샷추가
+						if (bev[i].opt1 == 1)//커피 샷추가
 						{
-							mem[i].opt_name = "샷 추가";
+							bev[i].opt_name = "샷 추가";
 							system("cls");
-							printf("%s 옵션을 선택하셨습니다. 0~9번 추가 가능하십니다. 원하는 값을 입력해주세요. \n", mem[i].opt_name);
-							scanf_s("%d", &mem[i].opt_shot);
-							totalprice += mem[i].opt_shot * 600;
-							printf("%s를 %d 회 하셨습니다.\n", mem[i].opt_name, mem[i].opt_shot);
+							printf("%s 옵션을 선택하셨습니다. 0~9번 추가 가능하십니다. 원하는 값을 입력해주세요. \n", bev[i].opt_name);
+							scanf_s("%d", &bev[i].opt_shot);
+							totalprice += bev[i].opt_shot * 600;
+							printf("%s를 %d 회 하셨습니다.\n", bev[i].opt_name, bev[i].opt_shot);
 
-							///////////////////////////////////////////////////////////////////
-							//함수 써서 나타내자.
-							while (1)
-							{
-								getchar();
-								printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
-								scanf_s("%c", &mem[i].optag, sizeof(mem[i].optag));
-								if (mem[i].optag == 'Y' || mem[i].optag == 'y')
-								{
-									optre = 1;
-									break;
-								}
-								else if (mem[i].optag == 'N' || mem[i].optag == 'n')
-								{
-									optre = 0;
-									break;
-								}
-								else
-								{
-									system("cls");
-									printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
-								}
-							}//반복 while(1)
+
+							optre = Option_Again();	//Option 반복 함수
+
 							break;
 						}//if (mem1.opt1 == 1)//커피 샷추가
 
-						else if (mem[i].opt1 == 2)//Espresso Choice
+						else if (bev[i].opt1 == 2)//Espresso Choice
 						{
-							mem[i].opt_name = "Espresso Choice";
+							bev[i].opt_name = "Espresso Choice";
 							system("cls");
 							while (1)
 							{
 
 								printf("1. 과테말라 \n2. Esp.C(과테말라) \n");
-								scanf_s("%d", &mem[i].opt_esp_num);
+								scanf_s("%d", &bev[i].opt_esp_num);
 
-								if (mem[i].opt_esp_num == 1)//과테말라
+								if (bev[i].opt_esp_num == 1)//과테말라
 								{
-									mem[i].opt_esp_name = "과테말라";
+									bev[i].opt_esp_name = "과테말라";
 									system("cls");
-									printf("'%s'를 선택하셨습니다. \n", mem[i].opt_esp_name);
+									printf("'%s'를 선택하셨습니다. \n", bev[i].opt_esp_name);
 
-									while (1)
-									{
-										getchar();
-										printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
-										scanf_s("%c", &mem[i].optag, sizeof(mem[i].optag));
-										if (mem[i].optag == 'Y' || mem[i].optag == 'y')
-										{
-											optre = 1;
-											break;
-										}
-										else if (mem[i].optag == 'N' || mem[i].optag == 'n')
-										{
-											optre = 0;
-											break;
-										}
-										else
-										{
-											system("cls");
-											printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
-										}
-										break;
-									}//반복 while(1)
-									break; 
+									optre = Option_Again();	//Option 반복 함수
+									break;
 								}
-								
-								else if (mem[i].opt_esp_num == 2)	//Esp.C
+
+								else if (bev[i].opt_esp_num == 2)	//Esp.C
 								{
-									mem[i].opt_esp_name = "Esp.C";
+									bev[i].opt_esp_name = "Esp.C";
 									system("cls");
-									printf("'%s'를 선택하셨습니다. \n", mem[i].opt_esp_name);
+									printf("'%s'를 선택하셨습니다. \n", bev[i].opt_esp_name);
 									totalprice += 300;
-									
-									while (1)
-									{
-										getchar();
-										printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
-										scanf_s("%c", &mem[i].optag, sizeof(mem[i].optag));
-										if (mem[i].optag == 'Y' || mem[i].optag == 'y')
-										{
-											optre = 1;
-											break;
-										}
-										else if (mem[i].optag == 'N' || mem[i].optag == 'n')
-										{
-											optre = 0;
-											break;
-										}
-										else
-										{
-											system("cls");
-											printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
-										}
-										break;
-									}//반복 while(1)
+
+									optre = Option_Again();	//Option 반복 함수
 									break;
 								}
 								else
@@ -481,13 +419,13 @@ Option 선택유무 결정하기
 							break;
 						}//else if
 
-						
-						else if (mem[i].opt1 == 3)	//시럽 추가
+
+						else if (bev[i].opt1 == 3)	//시럽 추가
 						{
-							mem[i].opt_name = "시럽 추가";
+							bev[i].opt_name = "시럽 추가";
 							system("cls");
-							printf("%s 옵션을 선택하셨습니다. 원하시는 시럽에 해당하는 번호 입력해주세요. \n\n", mem[i].opt_name);
-							while (mem[i].opt_sy_rep != 0)
+							printf("%s 옵션을 선택하셨습니다. 원하시는 시럽에 해당하는 번호 입력해주세요. \n\n", bev[i].opt_name);
+							while (bev[i].opt_sy_rep != 0)
 							{
 								//system("cls");
 								printf("1. 바닐라 시럽 \n2. 헤이즐럿 시럽 \n3. 카라멜 시럽 \n4. 허니바닐라 시럽\n");
@@ -495,56 +433,56 @@ Option 선택유무 결정하기
 								while (1)
 								{
 									getchar();
-									scanf_s("%d", &mem[i].opt_sy_num);
+									scanf_s("%d", &bev[i].opt_sy_num);
 
-									if (mem[i].opt_sy_num == 1)
+									if (bev[i].opt_sy_num == 1)
 									{
-										mem[i].opt_sy_name = "바닐라 시럽";
+										bev[i].opt_sy_name = "바닐라 시럽";
 										break;
 									}
-									else if (mem[i].opt_sy_num == 2)
+									else if (bev[i].opt_sy_num == 2)
 									{
-										mem[i].opt_sy_name = "헤이즐럿 시럽";
+										bev[i].opt_sy_name = "헤이즐럿 시럽";
 										break;
 									}
-									else if (mem[i].opt_sy_num == 3)
+									else if (bev[i].opt_sy_num == 3)
 									{
-										mem[i].opt_sy_name = "카라멜 시럽";
+										bev[i].opt_sy_name = "카라멜 시럽";
 										break;
 									}
-									else if (mem[i].opt_sy_num == 4)
+									else if (bev[i].opt_sy_num == 4)
 									{
-										mem[i].opt_sy_name = "허니바닐라 시럽";
+										bev[i].opt_sy_name = "허니바닐라 시럽";
 										break;
 									}
 									else
 									{
 										printf("잘못 입력하셨습니다. 제대로 입력해주세요. \n");
-										mem[i].opt_sy_name = "";
+										bev[i].opt_sy_name = "";
 									}
 								}//while(1)
 
 								system("cls");
-								printf("%s 을 선택하셨습니다. 0~9번 추가 가능하십니다. 원하는 값을 입력해주세요. \n", mem[i].opt_sy_name);
-								scanf_s("%d", &mem[i].opt_sy_time);
-								totalprice += mem[i].opt_sy_time * 600;
-								printf("%s 추가를 %d 회 하셨습니다.\n\n", mem[i].opt_sy_name, mem[i].opt_sy_time);
+								printf("%s 을 선택하셨습니다. 0~9번 추가 가능하십니다. 원하는 값을 입력해주세요. \n", bev[i].opt_sy_name);
+								scanf_s("%d", &bev[i].opt_sy_time);
+								totalprice += bev[i].opt_sy_time * 600;
+								printf("%s 추가를 %d 회 하셨습니다.\n\n", bev[i].opt_sy_name, bev[i].opt_sy_time);
 
 								getchar();
 								printf("또 다른 시럽을 추가하시겠습니까? (Y/N) \n");
 
 								while (1)
 								{
-									scanf_s("%c", &mem[i].opt_sy_again, sizeof(mem[i].opt_sy_again));
+									scanf_s("%c", &bev[i].opt_sy_again, sizeof(bev[i].opt_sy_again));
 
-									if (mem[i].opt_sy_again == 'Y' || mem[i].opt_sy_again == 'y')
+									if (bev[i].opt_sy_again == 'Y' || bev[i].opt_sy_again == 'y')
 									{
-										mem[i].opt_sy_rep = 1;
+										bev[i].opt_sy_rep = 1;
 										break;
 									}
-									else if (mem[i].opt_sy_again == 'N' || mem[i].opt_sy_again == 'n')
+									else if (bev[i].opt_sy_again == 'N' || bev[i].opt_sy_again == 'n')
 									{
-										mem[i].opt_sy_rep = 0;
+										bev[i].opt_sy_rep = 0;
 										break;
 									}
 									else
@@ -554,126 +492,84 @@ Option 선택유무 결정하기
 								}//while(1) 
 							}//while (mem1.opt_sy_rep != 0)
 
-							while (1)
-							{
-								getchar();
-								printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
-								scanf_s("%c", &mem[i].optag, sizeof(mem[i].optag));
-								if (mem[i].optag == 'Y' || mem[i].optag == 'y')
-								{
-									optre = 1;
-									break;
-								}
-								else if (mem[i].optag == 'N' || mem[i].optag == 'n')
-								{
-									optre = 0;
-									break;
-								}
-								else
-								{
-									system("cls");
-									printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
-								}
-								break;
-							}//반복 while(1)
+							optre = Option_Again();	//Option 반복 함수
 							break;
 						}//else if (mem1.opt1 == 3) 
 
 
-						else if (mem[i].opt1 == 4) // Base & Others
+						else if (bev[i].opt1 == 4) // Base & Others
 						{
-							mem[i].opt_name = "Base & Others";
+							bev[i].opt_name = "Base & Others";
 							system("cls");
 							printf("원하시는 옵션의 번호를 입력해주세요. \n");
 							printf("1. 물 \n2. 리드 \n3. 기타 \n");
-							scanf_s("%d", &mem[i].opt_bo_num);
+							scanf_s("%d", &bev[i].opt_bo_num);
 
-							if (mem[i].opt_bo_num == 1)//물 선택
+							if (bev[i].opt_bo_num == 1)//물 선택
 							{
 								system("cls");
-								mem[i].opt_bo_name = "물";
+								bev[i].opt_bo_name = "물";
 
-								printf("%s를 선택하셨습니다. 세부 옵션을 선택해주세요.\n", mem[i].opt_bo_name);
+								printf("%s를 선택하셨습니다. 세부 옵션을 선택해주세요.\n", bev[i].opt_bo_name);
 								Option_Mag();
 								while (1)
 								{
 									getchar();
-									scanf_s("%d", &mem[i].opt_bo_mag, sizeof(mem[i].opt_bo_mag));
+									scanf_s("%d", &bev[i].opt_bo_mag, sizeof(bev[i].opt_bo_mag));
 
-									if (mem[i].opt_bo_mag == 1) //적게
+									if (bev[i].opt_bo_mag == 1) //적게
 									{
-										mem[i].opt_bo_subname = "적게";
+										bev[i].opt_bo_subname = "적게";
 										break;
 									}
-									else if (mem[i].opt_bo_mag == 2)	//보통
+									else if (bev[i].opt_bo_mag == 2)	//보통
 									{
-										mem[i].opt_bo_subname = "보통";
+										bev[i].opt_bo_subname = "보통";
 										break;
 									}
-									else if (mem[i].opt_bo_mag == 3)	//많이
+									else if (bev[i].opt_bo_mag == 3)	//많이
 									{
-										mem[i].opt_bo_subname = "많이";
+										bev[i].opt_bo_subname = "많이";
 										break;
 									}
-									else if (mem[i].opt_bo_mag == 4)	//없이
+									else if (bev[i].opt_bo_mag == 4)	//없이
 									{
-										mem[i].opt_bo_subname = "없이";
+										bev[i].opt_bo_subname = "없이";
 										break;
 									}
 									else
 									{
 										printf("잘못 입력하셨습니다. 제대로 입력해주세요. \n");
-										mem[i].opt_bo_subname = "";
+										bev[i].opt_bo_subname = "";
 									}
 								}//while(1)
 								system("cls");
-								printf("%s를 %s선택하셨습니다. \n", mem[i].opt_bo_name, mem[i].opt_bo_subname);
+								printf("%s를 %s선택하셨습니다. \n", bev[i].opt_bo_name, bev[i].opt_bo_subname);
 
-								while (1)
-								{
-									getchar();
-									printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
-									scanf_s("%c", &mem[i].optag, sizeof(mem[i].optag));
-									if (mem[i].optag == 'Y' || mem[i].optag == 'y')
-									{
-										optre = 1;
-										break;
-									}
-									else if (mem[i].optag == 'N' || mem[i].optag == 'n')
-									{
-										optre = 0;
-										break;
-									}
-									else
-									{
-										system("cls");
-										printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
-									}
-									break;
-								}//반복 while(1)
+								optre = Option_Again();	//Option 반복 함수
 							}//if (mem1.opt_bo == 1)//물 선택
 
-							if (mem[i].opt_bo_num == 2)//리드 선택
+							if (bev[i].opt_bo_num == 2)//리드 선택
 							{
 								system("cls");
-								mem[i].opt_bo_name = "리드";
+								bev[i].opt_bo_name = "리드";
 
-								printf("%s옵션을 선택하셨습니다. 세부 옵션을 선택해주세요.\n", mem[i].opt_bo_name);
+								printf("%s옵션을 선택하셨습니다. 세부 옵션을 선택해주세요.\n", bev[i].opt_bo_name);
 
 								while (1)
 								{
 									getchar();
 									printf("돔리드(Dome Lid)로 변경하시겠습니까? (Y/N)\n");
-									scanf_s("%c", &mem[i].opt_lid, sizeof(mem[i].opt_lid));
-									
-									if (mem[i].opt_lid == 'Y' || mem[i].opt_lid == 'y')
+									scanf_s("%c", &bev[i].opt_lid, sizeof(bev[i].opt_lid));
+
+									if (bev[i].opt_lid == 'Y' || bev[i].opt_lid == 'y')
 									{
-										mem[i].opt_lid_name = "돔리드(Dome Lid)";
+										bev[i].opt_lid_name = "돔리드(Dome Lid)";
 										break;
 									}
-									else if (mem[i].opt_lid == 'N' || mem[i].opt_lid == 'n')
+									else if (bev[i].opt_lid == 'N' || bev[i].opt_lid == 'n')
 									{
-										mem[i].opt_lid_name = "플랫리드(Flat Lid)";
+										bev[i].opt_lid_name = "플랫리드(Flat Lid)";
 										break;
 									}
 									else
@@ -685,53 +581,32 @@ Option 선택유무 결정하기
 								}//while(1)
 								system("cls");
 
-								printf("%s를 선택하셨습니다. \n", mem[i].opt_lid_name);
+								printf("%s를 선택하셨습니다. \n", bev[i].opt_lid_name);
 
-								while (1)
-								{
-									getchar();
-									printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
-									scanf_s("%c", &mem[i].optag, sizeof(mem[i].optag));
-									if (mem[i].optag == 'Y' || mem[i].optag == 'y')
-									{
-										optre = 1;
-										break;
-									}
-									else if (mem[i].optag == 'N' || mem[i].optag == 'n')
-									{
-										optre = 0;
-										break;
-									}
-									else
-									{
-										system("cls");
-										printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
-									}
-									break;
-								}//반복 while(1)
-								
+								optre = Option_Again();	//Option 반복 함수
+
 							}//if (mem1.opt_bo == 2)//리드 선택
-							
-							if (mem[i].opt_bo_num == 3)//기타 선택
+
+							if (bev[i].opt_bo_num == 3)//기타 선택
 							{
 								system("cls");
-								mem[i].opt_bo_name = "기타";
+								bev[i].opt_bo_name = "기타";
 
-								printf("%s를 선택하셨습니다. 세부 옵션을 선택해주세요.\n", mem[i].opt_bo_name);
+								printf("%s를 선택하셨습니다. 세부 옵션을 선택해주세요.\n", bev[i].opt_bo_name);
 
 								while (1)
 								{
 									getchar();
 									printf("우유공간을 남겨주세요. (Y/N)\n");
-									scanf_s("%c", &mem[i].opt_milk, sizeof(mem[i].opt_milk));
-									if (mem[i].opt_milk == 'Y' || mem[i].opt_milk == 'y')
+									scanf_s("%c", &bev[i].opt_milk, sizeof(bev[i].opt_milk));
+									if (bev[i].opt_milk == 'Y' || bev[i].opt_milk == 'y')
 									{
-										mem[i].opt_milk_name = "남깁니다.";
+										bev[i].opt_milk_name = "남깁니다.";
 										break;
 									}
-									else if (mem[i].opt_milk == 'N' || mem[i].opt_milk == 'n')
+									else if (bev[i].opt_milk == 'N' || bev[i].opt_milk == 'n')
 									{
-										mem[i].opt_milk_name = "남기지 않습니다.";
+										bev[i].opt_milk_name = "남기지 않습니다.";
 										break;
 									}
 									else
@@ -741,273 +616,211 @@ Option 선택유무 결정하기
 									}
 								}//while(1)
 								system("cls");
-								printf("우유공간을 %s \n", mem[i].opt_milk_name);
+								printf("우유공간을 %s \n", bev[i].opt_milk_name);
 
 
 
-								while (1)
-								{
-									getchar();
-									printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
-									scanf_s("%c", &mem[i].optag, sizeof(mem[i].optag));
-									if (mem[i].optag == 'Y' || mem[i].optag == 'y')
-									{
-										optre = 1;
-										break;
-									}
-									else if (mem[i].optag == 'N' || mem[i].optag == 'n')
-									{
-										optre = 0;
-										break;
-									}
-									else
-									{
-										system("cls");
-										printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
-									}
-									break;
-								}//반복 while(1)
+								optre = Option_Again();	//Option 반복 함수
 
 							}//if (mem1.opt_bo == 2)//리드 선택
 							break;
 						}//	else if (mem1.opt1 == 4) // Base & Others
 
-						else if (mem[i].opt1 == 5) // 얼음
+						else if (bev[i].opt1 == 5) // 얼음
 						{
-							mem[i].opt_name = "얼음";
+							bev[i].opt_name = "얼음";
 							system("cls");
-							
-							printf("%s 옵션을 선택하셨습니다. 세부 옵션을 선택해주세요.\n", mem[i].opt_name);
+
+							printf("%s 옵션을 선택하셨습니다. 세부 옵션을 선택해주세요.\n", bev[i].opt_name);
 							Option_Mag();
-							
+
 							while (1)
 							{
 								getchar();
-								scanf_s("%d", &mem[i].opt_ice_mag, sizeof(mem[i].opt_ice_mag));
+								scanf_s("%d", &bev[i].opt_ice_mag, sizeof(bev[i].opt_ice_mag));
 
-								if (mem[i].opt_ice_mag == 1) //적게
+								if (bev[i].opt_ice_mag == 1) //적게
 								{
-									mem[i].opt_ice_subname = "적게";
+									bev[i].opt_ice_subname = "적게";
 									break;
 								}
-								else if (mem[i].opt_ice_mag == 2)	//보통
+								else if (bev[i].opt_ice_mag == 2)	//보통
 								{
-									mem[i].opt_ice_subname = "보통";
+									bev[i].opt_ice_subname = "보통";
 									break;
 								}
-								else if (mem[i].opt_ice_mag == 3)	//많이
+								else if (bev[i].opt_ice_mag == 3)	//많이
 								{
-									mem[i].opt_ice_subname = "많이";
+									bev[i].opt_ice_subname = "많이";
 									break;
 								}
-								else if (mem[i].opt_ice_mag == 4)	//없이
+								else if (bev[i].opt_ice_mag == 4)	//없이
 								{
-									mem[i].opt_ice_subname = "없이";
+									bev[i].opt_ice_subname = "없이";
 									break;
 								}
 								else
 								{
 									printf("잘못 입력하셨습니다. 제대로 입력해주세요. \n");
-									mem[i].opt_ice_subname = "";
+									bev[i].opt_ice_subname = "";
 								}
 							}//while(1)
 							system("cls");
-							printf("%s를 선택하셨습니다. \n", mem[i].opt_ice_subname);
+							printf("%s를 선택하셨습니다. \n", bev[i].opt_ice_subname);
 
-							while (1)
-							{
-								getchar();
-								printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
-								scanf_s("%c", &mem[i].optag, sizeof(mem[i].optag));
-								if (mem[i].optag == 'Y' || mem[i].optag == 'y')
-								{
-									optre = 1;
-									break;
-								}
-								else if (mem[i].optag == 'N' || mem[i].optag == 'n')
-								{
-									optre = 0;
-									break;
-								}
-								else
-								{
-									system("cls");
-									printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
-								}
-								break;
-							}//반복 while(1)
+							optre = Option_Again();	//Option 반복 함수
 							break;
 						}//	else if (mem1.opt1 == 5) // 얼음
 
-						else if (mem[i].opt1 == 6)//휘핑 옵션
+						else if (bev[i].opt1 == 6)//휘핑 옵션
 						{
-							mem[i].opt_name = "휘핑크림";
+							bev[i].opt_name = "휘핑크림";
 							system("cls");
-							printf("%s 옵션을 선택하셨습니다. 원하시는 휘핑에 해당하는 번호 입력해주세요. \n", mem[i].opt_name);
+							printf("%s 옵션을 선택하셨습니다. 원하시는 휘핑에 해당하는 번호 입력해주세요. \n", bev[i].opt_name);
 
-							while (mem[i].opt_whip_rep != 0)
+							while (bev[i].opt_whip_rep != 0)
 							{
 								printf("1. 일반 휘핑 \n2. 두유 휘핑 \n3. 초콜릿 휘핑 \n4. 에스프레소 휘핑 \n");
 
 								while (1)
 								{
 									getchar();
-									scanf_s("%d", &mem[i].opt_whip_num);
+									scanf_s("%d", &bev[i].opt_whip_num);
 
-									if (mem[i].opt_whip_num == 1)
+									if (bev[i].opt_whip_num == 1)
 									{
-										mem[i].opt_whip_name = "일반 휘핑";
+										bev[i].opt_whip_name = "일반 휘핑";
 										break;
 									}
-									else if (mem[i].opt_whip_num == 2)
+									else if (bev[i].opt_whip_num == 2)
 									{
-										mem[i].opt_whip_name = "두유 휘핑";
+										bev[i].opt_whip_name = "두유 휘핑";
 										totalprice += 600;
 										break;
 									}
-									else if (mem[i].opt_whip_num == 3)
+									else if (bev[i].opt_whip_num == 3)
 									{
-										mem[i].opt_whip_name = "초콜릿 휘핑";
+										bev[i].opt_whip_name = "초콜릿 휘핑";
 										totalprice += 600;
 										break;
 									}
-									else if (mem[i].opt_whip_num == 4)
+									else if (bev[i].opt_whip_num == 4)
 									{
-										mem[i].opt_whip_name = "에스프레소 휘핑";
+										bev[i].opt_whip_name = "에스프레소 휘핑";
 										totalprice += 600;
 										break;
 									}
 									else
 									{
 										printf("잘못 입력하셨습니다. 제대로 입력해주세요. \n");
-										mem[i].opt_whip_name = "";
+										bev[i].opt_whip_name = "";
 									}
 								}//while(1)
 
 								system("cls");
-								printf("%s을 선택하셨습니다. \n", mem[i].opt_whip_name);
+								printf("%s을 선택하셨습니다. \n", bev[i].opt_whip_name);
 								break;
 							}//while (mem1.opt_whip_rep != 0)
 
-							while (1)
-							{
-								getchar();
-								printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
-								scanf_s("%c", &mem[i].optag, sizeof(mem[i].optag));
-								if (mem[i].optag == 'Y' || mem[i].optag == 'y')
-								{
-									optre = 1;
-									break;
-								}
-								else if (mem[i].optag == 'N' || mem[i].optag == 'n')
-								{
-									optre = 0;
-									break;
-								}
-								else
-								{
-									system("cls");
-									printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
-								}
-								break;
-							}//반복 while(1)
+							optre = Option_Again();	//Option 반복 함수
 							break;
 						}//else if (mem1.opt1 == 6)//휘핑 옵션
 
-						else if (mem[i].opt1 == 7) //Drizzle Option
+						else if (bev[i].opt1 == 7) //Drizzle Option
 						{
-							mem[i].opt_name = "드리즐";
+							bev[i].opt_name = "드리즐";
 							system("cls");
-							printf("%s 옵션을 선택하셨습니다. 원하시는 드리즐에 해당하는 번호 입력해주세요. \n", mem[i].opt_name);
+							printf("%s 옵션을 선택하셨습니다. 원하시는 드리즐에 해당하는 번호 입력해주세요. \n", bev[i].opt_name);
 
-							while (mem[i].opt_driz_rep != 0)
+							while (bev[i].opt_driz_rep != 0)
 							{
 								printf("1. 카라멜 플랑 드리즐 \n2. 카라멜 드리즐 \n3. 초콜릿 드리즐 \n");
 
 								while (1)
 								{
 									getchar();
-									scanf_s("%d", &mem[i].opt_driz_num);
+									scanf_s("%d", &bev[i].opt_driz_num);
 
-									if (mem[i].opt_driz_num == 1)
+									if (bev[i].opt_driz_num == 1)
 									{
-										mem[i].opt_driz_name = "카라멜 플랑";
+										bev[i].opt_driz_name = "카라멜 플랑";
 										totalprice += 600;
 										break;
 									}
-									else if (mem[i].opt_driz_num == 2)
+									else if (bev[i].opt_driz_num == 2)
 									{
-										mem[i].opt_driz_name = "카라멜";
+										bev[i].opt_driz_name = "카라멜";
 										totalprice += 600;
 										break;
 									}
-									else if (mem[i].opt_driz_num == 3)
+									else if (bev[i].opt_driz_num == 3)
 									{
-										mem[i].opt_driz_name = "초콜릿";
+										bev[i].opt_driz_name = "초콜릿";
 										totalprice += 600;
 										break;
 									}
 									else
 									{
 										printf("잘못 입력하셨습니다. 제대로 입력해주세요. \n");
-										mem[i].opt_driz_name = "";
+										bev[i].opt_driz_name = "";
 									}
 								}//while(1)
 
 								system("cls");
-								printf("%s 드리즐을 선택하셨습니다. 세부 옵션을 선택해주세요.\n", mem[i].opt_driz_name);
+								printf("%s 드리즐을 선택하셨습니다. 세부 옵션을 선택해주세요.\n", bev[i].opt_driz_name);
 								Option_Mag();
+
 								while (1)
 								{
 									getchar();
-									scanf_s("%d", &mem[i].opt_driz_mag, sizeof(mem[i].opt_driz_mag));
+									scanf_s("%d", &bev[i].opt_driz_mag, sizeof(bev[i].opt_driz_mag));
 
-									if (mem[i].opt_driz_mag == 1) //적게
+									if (bev[i].opt_driz_mag == 1) //적게
 									{
-										mem[i].opt_driz_sizename = "적게";
+										bev[i].opt_driz_sizename = "적게";
 										break;
 									}
-									else if (mem[i].opt_driz_mag == 2)	//보통
+									else if (bev[i].opt_driz_mag == 2)	//보통
 									{
-										mem[i].opt_driz_sizename = "보통";
+										bev[i].opt_driz_sizename = "보통";
 										break;
 									}
-									else if (mem[i].opt_driz_mag == 3)	//많이
+									else if (bev[i].opt_driz_mag == 3)	//많이
 									{
-										mem[i].opt_driz_sizename = "많이";
+										bev[i].opt_driz_sizename = "많이";
 										break;
 									}
-									else if (mem[i].opt_driz_mag == 4)	//없이
+									else if (bev[i].opt_driz_mag == 4)	//없이
 									{
-										mem[i].opt_driz_sizename = "없이";
+										bev[i].opt_driz_sizename = "없이";
 										break;
 									}
 									else
 									{
 										printf("잘못 입력하셨습니다. 제대로 입력해주세요. \n");
-										mem[i].opt_driz_sizename = "";
+										bev[i].opt_driz_sizename = "";
 									}
 
 								}//while(1)
-								
+
 								system("cls");
-								printf("%s드리즐을 %s 만큼 선택하셨습니다. \n", mem[i].opt_driz_subname, mem[i].opt_driz_sizename);
+								printf("%s드리즐을 %s 만큼 선택하셨습니다. \n", bev[i].opt_driz_name, bev[i].opt_driz_sizename);
 
 								getchar();
 								printf("또 다른 드리즐을 추가하시겠습니까? (Y/N) \n");
 
 								while (1)
 								{
-									scanf_s("%c", &mem[i].opt_driz_again, sizeof(mem[i].opt_driz_again));
+									scanf_s("%c", &bev[i].opt_driz_again, sizeof(bev[i].opt_driz_again));
 
-									if (mem[i].opt_driz_again == 'Y' || mem[i].opt_driz_again == 'y')
+									if (bev[i].opt_driz_again == 'Y' || bev[i].opt_driz_again == 'y')
 									{
-										mem[i].opt_driz_rep = 1;
+										bev[i].opt_driz_rep = 1;
 										break;
 									}
-									else if (mem[i].opt_driz_again == 'N' || mem[i].opt_driz_again == 'n')
+									else if (bev[i].opt_driz_again == 'N' || bev[i].opt_driz_again == 'n')
 									{
-										mem[i].opt_driz_rep = 0;
+										bev[i].opt_driz_rep = 0;
 										break;
 									}
 									else
@@ -1017,28 +830,7 @@ Option 선택유무 결정하기
 								}//while(1) 
 							}//while (mem1.opt_whip_rep != 0)
 
-							while (1)
-							{
-								getchar();
-								printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
-								scanf_s("%c", &mem[i].optag, sizeof(mem[i].optag));
-								if (mem[i].optag == 'Y' || mem[i].optag == 'y')
-								{
-									optre = 1;
-									break;
-								}
-								else if (mem[i].optag == 'N' || mem[i].optag == 'n')
-								{
-									optre = 0;
-									break;
-								}
-								else
-								{
-									system("cls");
-									printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n(Y/N) \n");
-								}
-								break;
-							}//반복 while(1)
+							optre = Option_Again();	//Option 반복 함수
 							break;
 						}//else if (mem1.opt1 == 7) //드리즐 옵션
 
@@ -1048,11 +840,11 @@ Option 선택유무 결정하기
 							printf("잘못 입력하셨습니다. 원하시는 옵션의 번호를 제대로 다시 눌러주세요. \n");
 						}
 					}
-				
+
 				}//while (optre != 0)
 				break;
 			}
-			else if (mem[i].opt_choice == 2) //퍼스널 옵션 선택 안 함
+			else if (bev[i].opt_choice == 2) //퍼스널 옵션 선택 안 함
 			{
 				break;
 			}
@@ -1063,88 +855,89 @@ Option 선택유무 결정하기
 			}
 		}//Option while(1)
 
-/* STEP 08
-Option List 결정하기	-	STEP 07안에 포함!
-*/
+		/* STEP 08
+		Option List 결정하기	-	STEP 07안에 포함!
+		*/
 
 
-/* STEP 09
-Option 증가 내용	-	STEP 07안에 포함!
-*/
+		/* STEP 09
+		Option 증가 내용	-	STEP 07안에 포함!
+		*/
 
-/* STEP 10
-다른 옵션	-	STEP 07안에 포함!
-*/
+		/* STEP 10
+		다른 옵션	-	STEP 07안에 포함!
+		*/
 
-/* STEP 11
-input 정보 출력 & 출력 정보 확인
-*/
+		/* STEP 11
+		input 정보 출력 & 출력 정보 확인
+		*/
 		system("cls");
-		printf("%s님! 주문 내역을 확인하겠습니다. \n", mem[i].name);
-		printf("음료 %s %s %s 를 선택하셨습니다. \n", mem[i].size_name, mem[i].hclabel, mem[i].menuname);
+		printf("%s님! 주문 내역을 확인하겠습니다. \n", bev[i].name);
+		printf("음료 %s %s %s 를 선택하셨습니다. \n", bev[i].size_name, bev[i].hclabel, bev[i].menuname);
 		///////////////////옵션 주문내역 출력하기
-		/*	1st Try
-		for (mem1.in = 1; mem1.in = 8; mem1.in++)
+		//	1st Try
+		/*for (bev[i].in = 1; bev[i].in = 8; mem1.in++)
 		{
-			if (mem1.opt1 == mem1.in)
-				printf("%s", mem1.opt_name);
-			break;
-		}*
-
-		/*	2nd Try
-		if (mem1.opt1 == 1)
-		{
-			printf("1st\n");
-			if (mem1.opt1 == 2)
-			{
-				printf("2nd\n");
-				if (mem1.opt1 == 3)
-				{
-					printf("3rd\n");
-					if (mem1.opt1 == 4)
-					{
-						printf("4th\n");
-						
-					}
-				}
-			}
+		if (mem1.opt1 == mem1.in)
+		printf("%s", mem1.opt_name);
+		break;
 		}*/
 
-/* STEP 12
-음료 이름 정하기
-*/
+		//	2nd Try
+		/*
+		if (bev[i].opt1 == 1)
+		{
+		printf("1st\n");
+		if (bev[i].opt1 == 2)
+		{
+		printf("2nd\n");
+		if (bev[i].opt1 == 3)
+		{
+		printf("3rd\n");
+		if (bev[i].opt1 == 4)
+		{
+		printf("4th\n");
+
+		}
+		}
+		}
+		}*/
+
+		/* STEP 12
+		음료 이름 정하기
+		*/
 		printf("만드신 음료의 별명을 지어주세요! \n");
 		printf("별명을 원치 않으시면 엔터(Enter)를 눌러주세요. 그냥 메뉴명이 출력 됩니다!\n");
-		
+
 		getchar();
-		gets_s(mem[i].nick);//////////////////////////////////////////////////////////////////mem[i]인지 mem[3]인지 확실하게 체크!
-		if (mem[i].nick[0] == (char)NULL) //Enter
+		gets_s(bev[i].nick);//////////////////////////////////////////////////////////////////bev[i]인지 mem[3]인지 확실하게 체크!
+		if (bev[i].nick[0] == (char)NULL) //Enter
 		{
 			system("cls");
-			printf("%s %s %s \n", mem[i].size_name, mem[i].hclabel, mem[i].menuname);
+			printf("%s %s %s \n", bev[i].size_name, bev[i].hclabel, bev[i].menuname);
 		}
 		else
 		{
 			system("cls");
-			printf("%s\n", mem[i].nick);
+			printf("%s\n", bev[i].nick);
 		}
-			
-/* STEP 13
-추가 주문 여부 확인
-*/
 
-/* STEP 14
-개인컵 존재 여부
-*/
-		
-		printf("개인 컵을 가지고 오셨습니까?? %s 님?? (Y/N)\n", mem[i].name);
+		/* STEP 13
+		추가 주문 여부 확인
+		*/
+
+		/* STEP 14
+		개인컵 존재 여부
+		*/
+
+		printf("개인 컵을 가지고 오셨습니까?? %s 님?? (Y/N)\n", bev[i].name);
 		printf("개인 컵이 있으시면 300원 할인 가능합니다.\n");
 
 		while (1)
 		{
-			scanf_s("%c", &mem[i].cup, sizeof(mem[i].cup));
-			
-			if (mem[i].cup == 'Y' || mem[i].cup == 'y')
+			scanf_s("%c", &bev[i].cup, sizeof(bev[i].cup));
+
+			if (bev[i].cup == 'Y' || bev[i].cup == 'y')
 			{
 				system("cls");
 				printf("개인컵을 가지고 오셨습니다. 300원이 할인 되었습니다! \n");
@@ -1152,7 +945,7 @@ input 정보 출력 & 출력 정보 확인
 				totalprice -= 300;
 				break;
 			}
-			else if (mem[i].cup == 'N' || mem[i].cup == 'n')
+			else if (bev[i].cup == 'N' || bev[i].cup == 'n')
 			{
 				system("cls");
 				printf("개인컵이 없으십니다. 할인이 적용되지 않습니다! \n");
@@ -1165,11 +958,11 @@ input 정보 출력 & 출력 정보 확인
 			}
 		}
 
-/* STEP 15
-최종 가격정보 출력
-*/
+		/* STEP 15
+		최종 가격정보 출력
+		*/
 		//회원이고 옵션을 선택했으면 1회 extra무료
-		if (mem[i].yesmem == 1 && mem[i].opt_choice == 1)
+		if (bev[i].yesmem == 1 && bev[i].opt_choice == 1)
 		{
 			totalprice -= 600;
 		}
@@ -1181,35 +974,35 @@ input 정보 출력 & 출력 정보 확인
 		printf("\n최종 결제금액은 %d입니다. \n\n", totalprice);
 
 
-		
-/* STEP 16
-포인트 사용
-*/
 
-		if (mem[i].yesmem == 1)
+		/* STEP 16
+		포인트 사용
+		*/
+
+		if (bev[i].yesmem == 1)
 		{
-			printf("회원님께서 현재 가지고 계신 적립 포인트는 %d 입니다. \n", mem[i].valuepoint);
+			printf("회원님께서 현재 가지고 계신 적립 포인트는 %d 입니다. \n", bev[i].valuepoint);
 			printf("포인트를 사용하시겠습니까?? (Y/N) \n");
-			
+
 			while (1)
 			{
 				getchar();
-				scanf_s("%c", &mem[i].pch, sizeof(mem[i].pch));
+				scanf_s("%c", &bev[i].pch, sizeof(bev[i].pch));
 
-				if (mem[i].pch == 'Y' || mem[i].pch == 'y') //포인트 사용
+				if (bev[i].pch == 'Y' || bev[i].pch == 'y') //포인트 사용
 				{
 					printf("포인트에서 얼마를 차감하시겠습니까? \n");
-					scanf_s("%d", &mem[i].pomin, sizeof(mem[i].pomin));
-					
-					mem[i].valuepoint -= mem[i].pomin;
-					totalprice -= mem[i].pomin;
+					scanf_s("%d", &bev[i].pomin, sizeof(bev[i].pomin));
+
+					bev[i].valuepoint -= bev[i].pomin;
+					totalprice -= bev[i].pomin;
 
 					system("cls");
-					printf("잔여 포인트는 %d 입니다. \n", mem[i].valuepoint);
+					printf("잔여 포인트는 %d 입니다. \n", bev[i].valuepoint);
 					printf("현금결제 하실 금액은 %d 입니다. \n", totalprice);
 					break;
 				}
-				else if (mem[i].pch == 'N' || mem[i].pch == 'n')
+				else if (bev[i].pch == 'N' || bev[i].pch == 'n')
 				{
 					system("cls");
 					printf("현금결제 하실 금액은 %d 입니다. \n", totalprice);
@@ -1220,44 +1013,45 @@ input 정보 출력 & 출력 정보 확인
 					printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n포인트를 사용하시겠습니까? (Y/N) \n");
 				}
 			}
-	
+
 
 		}//if (mem1.yesmem == 1)
-		else if (mem[i].yesmem == 0)
+		else if (bev[i].yesmem == 0)
 		{
 			printf("비회원이시므로 포인트 결제가 불가능 합니다. \n");
 			printf("현금결제 하실 금액은 %d 입니다. \n", totalprice);
 			//break;
 		}
 
-/* STEP 17
-현금 결제 및 잔돈
-*/
+		/* STEP 17
+		현금 결제 및 잔돈
+		*/
 		///////////////수정 필요하다. 좀 더 깔끔하게!!
 		// 잔돈 0원이어도 현금 입력을 받는다 - 이 부분 수정!
+
 		while (1)
 		{
 			printf("현금을 주세요. \n");
-			scanf_s("%d", &mem[i].cash, sizeof(mem[i].cash));
+			scanf_s("%d", &bev[i].cash, sizeof(bev[i].cash));
 
-			if (mem[i].cash < totalprice)
+			if (bev[i].cash < totalprice)
 			{
 				system("cls");
 				printf("현금결제 하실 금액은 %d 입니다. \n", totalprice);
-				printf("%d만큼이 부족합니다. 부족한 금액을 더 주세요. \n", totalprice - mem[i].cash);
+				printf("%d만큼이 부족합니다. 부족한 금액을 더 주세요. \n", totalprice - bev[i].cash);
 			}
-			else if (mem[i].cash >= totalprice)
+			else// if (bev[i].cash >= totalprice)
 			{
 				system("cls");
-				printf("현금 총 %d를 받았습니다. \n잔돈은 %d 입니다.\n", mem[i].cash, mem[i].cash - totalprice);
+				printf("현금 총 %d를 받았습니다. \n잔돈은 %d 입니다.\n", bev[i].cash, bev[i].cash - totalprice);
 				break;
 			}
-			totalprice -= mem[i].cash;
+			totalprice -= bev[i].cash;
 			//mem1.cash += mem1.cash;
 		}
-/* STEP 18
-음료주문이 들어감
-*/
+		/* STEP 18
+		음료주문이 들어감
+		*/
 		printf("주문하신 블라블라가 주문들어갔습니다. 3초 뒤에 음료가 완성됩니다. 잠시만 기다려주세요! \n");
 		Sleep(1000);
 		system("cls");
@@ -1284,12 +1078,12 @@ input 정보 출력 & 출력 정보 확인
 		system("cls");
 		printf("음료가 완성되었습니다!\n");
 
-/* STEP 19
-END
-*/
+		/* STEP 19
+		END
+		*/
 		printf("사이렌 오더(Siren Order)를 이용해주셔서 감사합니다! \n");
 		//system("PAUSE"); // Wait to exit program till the key input
-		
+
 		//일단 구조체 증가 하게 할 수 있음을 확인, 위치를 수정해서 음료에 대한 구조체 변수만 바뀌도록 다시 수정하자.
 		printf("Keep going?\n");
 		scanf_s("%d", &again);
@@ -1302,8 +1096,8 @@ END
 			i++;
 		}
 	}//for(i=0;;)
-	
-	
+
+
 	return 0;
 
 }//main

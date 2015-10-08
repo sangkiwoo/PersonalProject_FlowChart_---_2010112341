@@ -5,5 +5,5 @@ void Menulist();	// function for displaying menu
 void Size();		// function for beverage size	
 void Option();		// function for beverage option
 void Option_Mag();	// function for the amount of beverage
-
+int Option_Again();
 #endif
