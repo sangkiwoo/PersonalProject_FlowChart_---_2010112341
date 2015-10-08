@@ -21,16 +21,16 @@ struct drink //member //dri
 {
 
 
-	int point;	//포인트카드 적립금
-	int yesmem = 0;	//회원 유무
+	//int point;	//포인트카드 적립금
+	//int yesmem = 0;	//회원 유무
 	int menunum;	//메뉴 번호
 	int hc;	//HOT/COOL
 	int sizenum;
 	int opt_choice;
 	int opt1, opt_shot, opt_esp_num;
-	int valuepoint;	//유인나 100000, 아이유 80000, 박보영 60000 
-	int pomin;
-	int cash;
+	//int valuepoint;	//유인나 100000, 아이유 80000, 박보영 60000 
+	//int pomin;
+	//int cash;
 	int opt_sy_num;	//시럽 옵션
 	int opt_sy_time; // 시럽 옵션 추가횟수
 	int opt_bo_num;	//Base & Other Option
@@ -44,17 +44,18 @@ struct drink //member //dri
 	int opt_driz_mag;
 	int in;
 
-	char name[100];	//회원 이름
-	char *name_m1 = "유인나";
-	char *name_m2 = "아이유";
-	char *name_m3 = "박보영";
+	//char name[100];	//회원 이름
+	//char *name_m1 = "유인나";
+	//char *name_m2 = "아이유";
+	//char *name_m3 = "박보영";
+	//char bev_again;
 	char *menuname;
 	char *hclabel;
 	char *size_name;
-	char membership = 0;	//회원 유무 확인
+	//char membership = 0;	//회원 유무 확인
 	char cup = 0;
 	char nick[100];
-	char pch = 0;
+	//char pch = 0;
 	char optag;
 	char *opt_name;
 	char *opt_esp_name;
@@ -66,7 +67,6 @@ struct drink //member //dri
 	char *opt_lid_name;
 	char opt_milk;
 	char *opt_milk_name;
-	//char *opt_ice_name;
 	char *opt_ice_subname;
 	char *opt_whip_name;
 	char *opt_whip_subname;
@@ -74,7 +74,6 @@ struct drink //member //dri
 	char *opt_driz_subname;
 	char *opt_driz_sizename;
 	char opt_driz_again;
-
 };
 
 
@@ -89,19 +88,33 @@ int main(void)
 	int totalprice = 0;
 	int start;
 	int i; //drink increase - bev[i]
+	int j;
 	int optre = 1;
 
-	int again;
+	char bev_again; //또 다른 음료 주문 확인
 
-	char order_check[300]; // for order display
+	int yesmem = 0;	//회원 유무
+	int valuepoint = 0;	//유인나 100000, 아이유 80000, 박보영 60000 
+	int pomin;
+	int cash;
+
+	char name[100];	//회원 이름
+	char *name_m1 = "유인나";
+	char *name_m2 = "아이유";
+	char *name_m3 = "박보영";
+	char membership = 0;	//회원 유무 확인
+	char order_fin[100];
+	char pch = 0;
+
+	char order_check[500];	//for order display
 	order_check[0] = 0;
+
 
 	/*	STEP 01
 	Siren Order 시작하기
 	*/
 
-
-	printf("스타벅스 Siren Order를 시작합니다! \n\n");
+	printf("\n스타벅스 Siren Order를 시작합니다! \n\n");
 	//꾸미자!!
 	while (1)
 	{
@@ -129,94 +142,100 @@ int main(void)
 	}
 
 
-	for (i = 0; i < 3;)
+
+	/*	STEP 02
+	고객 이름 입력받기
+	*/
+
+	printf("고객님의 이름을 입력해주세요. \n");
+	printf("(기존 회원 : 유인나, 아이유, 박보영) \n");
+	scanf_s("%s", name, sizeof(name));
+	//	scanf_s함수는 scanf함수와 달리 문자와 문자열에 대해서는 저장공간의 크기값도 같이 줘야 합니다.
+	system("cls");	//콘솔창 화면 지우기
+
+
+	/*	STEP 03
+	회원 유무 확인하기
+	*/
+	if (!strcmp(name, name_m1))
 	{
-		\
-			/*	STEP 02
-			고객 이름 입력받기
-			*/
+		yesmem = 1;	//회원임을 기억함.
+		valuepoint = 100000;
+		printf("환영합니다! %s님! \n%s님께서는 골드 레벨 회원 이십니다! \n", name_m1, name_m1);
+		printf("회원이시므로 무료 extra 1회 가능하십니다. \n\n");
+		printf("%s님께서 가지고계신 적립 포인트는 %d점 입니다. \n\n", name_m1, valuepoint);
+		printf("===============================================\n\n");
 
-			printf("고객님의 이름을 입력해주세요. \n");
-		printf("(기존 회원 : 유인나, 아이유, 박보영) \n");
-		scanf_s("%s", bev[i].name, sizeof(bev[i].name));
-		//	scanf_s함수는 scanf함수와 달리 문자와 문자열에 대해서는 저장공간의 크기값도 같이 줘야 합니다.
-		system("cls");	//콘솔창 화면 지우기
+	}
+	else if (!strcmp(name, name_m2))
+	{
+		yesmem = 1;
+		valuepoint = 80000;
+		printf("환영합니다! %s님! \n%s님께서는 그린 레벨 회원 이십니다! \n", name_m2, name_m2);
+		printf("회원이시므로 무료 extra 1회 가능하십니다. \n\n");
+		printf("%s님께서 가지고계신 적립 포인트는 %d점 입니다. \n\n", name_m2, valuepoint);
+		printf("===============================================\n\n");
 
+	}
+	else if (!strcmp(name, name_m3))
+	{
+		yesmem = 1;
+		valuepoint = 60000;
+		printf("환영합니다! %s님! \n%s님께서는 웰컴 레벨 회원 이십니다! \n", name_m3, name_m3);
+		printf("회원이시므로 무료 extra 1회 가능하십니다. \n\n");
+		printf("%s님께서 가지고계신 적립 포인트는 %d점 입니다. \n\n", name_m3, valuepoint);
+		printf("===============================================\n\n");
 
-		/*	STEP 03
-		회원 유무 확인하기
-		*/
-		if (!strcmp(bev[i].name, bev[i].name_m1))
-		{
-			bev[i].yesmem = 1;	//회원임을 기억함.
-			bev[i].valuepoint = 100000;
-			printf("환영합니다! %s님! \n%s님께서는 골드 레벨 회원 이십니다! \n", bev[i].name_m1, bev[i].name_m1);
-			printf("회원이시므로 무료 extra 1회 가능하십니다. \n\n");
-			printf("%s님께서 가지고계신 적립 포인트는 %d점 입니다. \n\n", bev[i].name_m1, bev[i].valuepoint);
-			printf("\n원하시는 메뉴를 고르시고 해당 메뉴의 번호를 입력해주세요. \n\n");
-		}
-		else if (!strcmp(bev[i].name, bev[i].name_m2))
-		{
-			bev[i].yesmem = 1;
-			bev[i].valuepoint = 80000;
-			printf("환영합니다! %s님! \n%s님께서는 그린 레벨 회원 이십니다! \n", bev[i].name_m2, bev[i].name_m2);
-			printf("회원이시므로 무료 extra 1회 가능하십니다. \n\n");
-			printf("%s님께서 가지고계신 적립 포인트는 %d점 입니다. \n\n", bev[i].name_m2, bev[i].valuepoint);
-			printf("\n원하시는 메뉴를 고르시고 해당 메뉴의 번호를 입력해주세요. \n\n");
-		}
-		else if (!strcmp(bev[i].name, bev[i].name_m3))
-		{
-			bev[i].yesmem = 1;
-			bev[i].valuepoint = 60000;
-			printf("환영합니다! %s님! \n%s님께서는 웰컴 레벨 회원 이십니다! \n", bev[i].name_m3, bev[i].name_m3);
-			printf("회원이시므로 무료 extra 1회 가능하십니다. \n\n");
-			printf("%s님께서 가지고계신 적립 포인트는 %d점 입니다. \n\n", bev[i].name_m3, bev[i].valuepoint);
-			printf("\n원하시는 메뉴를 고르시고 해당 메뉴의 번호를 입력해주세요. \n\n");
-		}
-		else
-		{
-			printf("환영합니다! %s님! \n\n%s 님은 스타벅스 회원이십니까? (Y/N) \n", bev[i].name, bev[i].name);
-			printf("회원의 경우 무료 extra 1회 가능하십니다. \n");
+	}
+	else
+	{
+		printf("환영합니다! %s님! \n\n%s 님은 스타벅스 회원이십니까? (Y/N) \n", name, name);
+		printf("회원의 경우 무료 extra 1회 가능하십니다. \n");
 
-			while (1)
+		while (1)
+		{
+
+			//	fflush(stdin);
+			getchar();
+			scanf_s("%c", &membership, sizeof(membership));
+			//fflush(stdin);
+			//membership = getchar();
+			if (membership == 'Y' || membership == 'y')
 			{
-				getchar();
-				scanf_s("%c", &bev[i].membership, sizeof(bev[i].membership));
+				system("cls");
+				yesmem = 1;
+				break;
+			}
 
-				if (bev[i].membership == 'Y' || bev[i].membership == 'y')
-				{
-					system("cls");
-					bev[i].yesmem = 1;
-					printf("%s님! \n원하시는 메뉴를 고르시고 해당 메뉴의 번호를 입력해주세요. \n\n", bev[i].name);
-					break;
-				}
-
-				else if (bev[i].membership == 'N' || bev[i].membership == 'n')
-				{
-					system("cls");
-					bev[i].yesmem = 0;	//비회원임을 기억함.
-					printf("%s님! \n원하시는 메뉴를 고르시고 해당 메뉴의 번호를 입력해주세요. \n\n", bev[i].name);
-					break;
-				}
-				else
-				{
-					system("cls");
-					printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n스타벅스 회원이십니까? (Y/N) \n");
-				}
+			else if (membership == 'N' || membership == 'n')
+			{
+				system("cls");
+				yesmem = 0;	//비회원임을 기억함.
+				break;
+			}
+			else
+			{
+				system("cls");
+				printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n스타벅스 회원이십니까? (Y/N) \n");
 			}
 		}
+	}
 
 
-		/* STEP 04
-		메뉴 선택하기
-		*/
+	/* STEP 04
+	메뉴 선택하기
+	*/
+
+
+	for (i = 0; i < 3;)
+	{
+		printf("원하시는 메뉴를 고르시고 해당 메뉴의 번호를 입력해주세요. \n\n");
 		while (1)
 		{
 			Menulist(); //함수를 이용하여 메뉴 목록 표시
 
 			getchar();
 			scanf_s("%d", &bev[i].menunum);
-			printf("%d", bev[i].menunum);
 			system("cls");
 
 			if (bev[i].menunum == 1)	//Americano
@@ -256,8 +275,8 @@ int main(void)
 			}
 
 		}	//while(1)
-		printf("음료 %s를 선택하셨습니다. \n", bev[i].menuname);
-
+		printf("음료 %s를 선택하셨습니다. \n\n", bev[i].menuname);
+		printf("===============================================\n");
 
 		/* STEP 05
 		HOT/COOL 선택하기
@@ -306,8 +325,8 @@ int main(void)
 				printf("잘못 입력하셨습니다. 다시 입력해주세요.\n");
 			}
 		}//while (1)
-		printf("음료 %s %s 를 선택하셨습니다. \n", bev[i].hclabel, bev[i].menuname);
-
+		printf("음료 %s %s 를 선택하셨습니다. \n\n", bev[i].hclabel, bev[i].menuname);
+		printf("===============================================\n");
 		/* STEP 06
 		SIZE 선택하기
 		*/
@@ -345,7 +364,8 @@ int main(void)
 				totalprice = totalprice + 0;
 			}
 		}
-		printf("음료 %s %s %s 를 선택하셨습니다. \n", bev[i].size_name, bev[i].hclabel, bev[i].menuname);
+		printf("음료 %s %s %s 를 선택하셨습니다. \n\n", bev[i].size_name, bev[i].hclabel, bev[i].menuname);
+		printf("===============================================\n\n");
 
 		/* STEP 07
 		Option 선택유무 결정하기
@@ -355,7 +375,7 @@ int main(void)
 			printf("퍼스널 옵션으로 나만의 음료를 만드시겠습니까? \n");
 			printf("\n1. 예, 옵션을 선택합니다. \n2. 아니요, 옵션을 선택하지 않습니다. \n");
 			scanf_s("%d", &bev[i].opt_choice);
-			
+
 			if (bev[i].opt_choice == 1)//퍼스널 옵션 선택함
 			{
 				while (optre != 0)
@@ -368,7 +388,7 @@ int main(void)
 					{
 						Option();
 						scanf_s("%d", &bev[i].opt1);
-						char buffer[50]; // temporary space for saving order
+						char buffer[50]; //temporary space for saving order
 
 						if (bev[i].opt1 == 1)//커피 샷추가
 						{
@@ -378,14 +398,11 @@ int main(void)
 							scanf_s("%d", &bev[i].opt_shot);
 							totalprice += bev[i].opt_shot * 600;
 
-							sprintf_s(buffer,sizeof(buffer),"%s를 %d 회 하셨습니다.\n", bev[i].opt_name, bev[i].opt_shot);
+							sprintf_s(buffer, sizeof(buffer), "%s를 %d회 추가하셨습니다. \n", bev[i].opt_name, bev[i].opt_shot);
 							strcat_s(order_check, sizeof(order_check), buffer);
 							puts(buffer);
 
-
-
 							optre = Option_Again();	//Option 반복 함수
-
 							break;
 						}//if (mem1.opt1 == 1)//커피 샷추가
 
@@ -403,9 +420,8 @@ int main(void)
 								{
 									bev[i].opt_esp_name = "과테말라";
 									system("cls");
-									sprintf_s(buffer,sizeof(buffer),"'%s'를 선택하셨습니다. \n", bev[i].opt_esp_name);
-									strcat_s(order_check, sizeof(order_check),buffer);
-									puts(buffer);
+									sprintf_s(buffer, sizeof(buffer), "'%s'를 선택하셨습니다. \n", bev[i].opt_esp_name);
+									strcat_s(order_check, sizeof(order_check), buffer);
 
 									optre = Option_Again();	//Option 반복 함수
 									break;
@@ -415,11 +431,9 @@ int main(void)
 								{
 									bev[i].opt_esp_name = "Esp.C";
 									system("cls");
-									sprintf_s(buffer,sizeof(buffer),"'%s'를 선택하셨습니다. \n", bev[i].opt_esp_name);
 									totalprice += 300;
-									
-									strcat_s(order_check, sizeof(order_check),buffer);
-									puts(buffer);
+									sprintf_s(buffer, sizeof(buffer), "'%s'를 선택하셨습니다. \n", bev[i].opt_esp_name);
+									strcat_s(order_check, sizeof(order_check), buffer);
 
 									optre = Option_Again();	//Option 반복 함수
 									break;
@@ -480,13 +494,17 @@ int main(void)
 								printf("%s 을 선택하셨습니다. 0~9번 추가 가능하십니다. 원하는 값을 입력해주세요. \n", bev[i].opt_sy_name);
 								scanf_s("%d", &bev[i].opt_sy_time);
 								totalprice += bev[i].opt_sy_time * 600;
-								printf("%s 추가를 %d 회 하셨습니다.\n\n", bev[i].opt_sy_name, bev[i].opt_sy_time);
 
-								getchar();
+								sprintf_s(buffer, sizeof(buffer), "%s 추가를 %d 회 하셨습니다.\n\n", bev[i].opt_sy_name, bev[i].opt_sy_time);
+								strcat_s(order_check, sizeof(order_check), buffer);
+
+								//getchar();
 								printf("또 다른 시럽을 추가하시겠습니까? (Y/N) \n");
 
 								while (1)
 								{
+									getchar();
+
 									scanf_s("%c", &bev[i].opt_sy_again, sizeof(bev[i].opt_sy_again));
 
 									if (bev[i].opt_sy_again == 'Y' || bev[i].opt_sy_again == 'y')
@@ -558,7 +576,9 @@ int main(void)
 									}
 								}//while(1)
 								system("cls");
-								printf("%s를 %s선택하셨습니다. \n", bev[i].opt_bo_name, bev[i].opt_bo_subname);
+
+								sprintf_s(buffer, sizeof(buffer), "%s를 %s선택하셨습니다. \n", bev[i].opt_bo_name, bev[i].opt_bo_subname);
+								strcat_s(order_check, sizeof(order_check), buffer);
 
 								optre = Option_Again();	//Option 반복 함수
 							}//if (mem1.opt_bo == 1)//물 선택
@@ -595,7 +615,9 @@ int main(void)
 								}//while(1)
 								system("cls");
 
-								printf("%s를 선택하셨습니다. \n", bev[i].opt_lid_name);
+
+								sprintf_s(buffer, sizeof(buffer), "%s를 선택하셨습니다. \n", bev[i].opt_lid_name);
+								strcat_s(order_check, sizeof(order_check), buffer);
 
 								optre = Option_Again();	//Option 반복 함수
 
@@ -613,6 +635,8 @@ int main(void)
 									getchar();
 									printf("우유공간을 남겨주세요. (Y/N)\n");
 									scanf_s("%c", &bev[i].opt_milk, sizeof(bev[i].opt_milk));
+									//bev[i].opt_milk= getchar();
+									//fflush(stdin);
 									if (bev[i].opt_milk == 'Y' || bev[i].opt_milk == 'y')
 									{
 										bev[i].opt_milk_name = "남깁니다.";
@@ -630,7 +654,9 @@ int main(void)
 									}
 								}//while(1)
 								system("cls");
-								printf("우유공간을 %s \n", bev[i].opt_milk_name);
+
+								sprintf_s(buffer, sizeof(buffer), "우유공간을 %s \n", bev[i].opt_milk_name);
+								strcat_s(order_check, sizeof(order_check), buffer);
 
 
 
@@ -680,7 +706,9 @@ int main(void)
 								}
 							}//while(1)
 							system("cls");
-							printf("%s를 선택하셨습니다. \n", bev[i].opt_ice_subname);
+
+							sprintf_s(buffer, sizeof(buffer), "%s를 선택하셨습니다. \n", bev[i].opt_ice_subname);
+							strcat_s(order_check, sizeof(order_check), buffer);
 
 							optre = Option_Again();	//Option 반복 함수
 							break;
@@ -732,7 +760,10 @@ int main(void)
 								}//while(1)
 
 								system("cls");
-								printf("%s을 선택하셨습니다. \n", bev[i].opt_whip_name);
+
+								sprintf_s(buffer, sizeof(buffer), "%s을 선택하셨습니다. \n", bev[i].opt_whip_name);
+								strcat_s(order_check, sizeof(order_check), buffer);
+
 								break;
 							}//while (mem1.opt_whip_rep != 0)
 
@@ -818,15 +849,18 @@ int main(void)
 								}//while(1)
 
 								system("cls");
-								printf("%s드리즐을 %s 만큼 선택하셨습니다. \n", bev[i].opt_driz_name, bev[i].opt_driz_sizename);
 
-								getchar();
+								sprintf_s(buffer, sizeof(buffer), "%s드리즐을 %s 만큼 선택하셨습니다. \n", bev[i].opt_driz_name, bev[i].opt_driz_sizename);
+								strcat_s(order_check, sizeof(order_check), buffer);
+
+								//getchar();
 								printf("또 다른 드리즐을 추가하시겠습니까? (Y/N) \n");
 
 								while (1)
 								{
-									scanf_s("%c", &bev[i].opt_driz_again, sizeof(bev[i].opt_driz_again));
-
+									//scanf_s("%c", &bev[i].opt_driz_again, sizeof(bev[i].opt_driz_again));
+									bev[i].opt_driz_again = getchar();
+									fflush(stdin);
 									if (bev[i].opt_driz_again == 'Y' || bev[i].opt_driz_again == 'y')
 									{
 										bev[i].opt_driz_rep = 1;
@@ -860,6 +894,7 @@ int main(void)
 			}
 			else if (bev[i].opt_choice == 2) //퍼스널 옵션 선택 안 함
 			{
+
 				break;
 			}
 			else
@@ -886,38 +921,21 @@ int main(void)
 		input 정보 출력 & 출력 정보 확인
 		*/
 		system("cls");
-		printf("%s님! 주문 내역을 확인하겠습니다. \n", bev[i].name);
+		printf("%s님! 주문 내역을 확인하겠습니다. \n\n", name);
 		printf("음료 %s %s %s 를 선택하셨습니다. \n", bev[i].size_name, bev[i].hclabel, bev[i].menuname);
 
+		//	if (bev[i].opt_choice == 1)
+		//	{
+
+		printf("퍼스널 옵션 선택사항은 다음과 같습니다. \n");
 		printf("%s\n", order_check);
-		///////////////////옵션 주문내역 출력하기
-		//	1st Try
-		/*for (bev[i].in = 1; bev[i].in = 8; mem1.in++)
-		{
-		if (mem1.opt1 == mem1.in)
-		printf("%s", mem1.opt_name);
-		break;
-		}*/
+		//	}
+		//	else //personal option 을 선택하지 않은경우
+		//	{
+		//		printf("\n");
+		//	}
+		printf("===============================================\n\n");
 
-		//	2nd Try
-		/*
-		if (bev[i].opt1 == 1)
-		{
-		printf("1st\n");
-		if (bev[i].opt1 == 2)
-		{
-		printf("2nd\n");
-		if (bev[i].opt1 == 3)
-		{
-		printf("3rd\n");
-		if (bev[i].opt1 == 4)
-		{
-		printf("4th\n");
-
-		}
-		}
-		}
-		}*/
 
 		/* STEP 12
 		음료 이름 정하기
@@ -926,149 +944,210 @@ int main(void)
 		printf("별명을 원치 않으시면 엔터(Enter)를 눌러주세요. 그냥 메뉴명이 출력 됩니다!\n");
 
 		getchar();
-		gets_s(bev[i].nick);//////////////////////////////////////////////////////////////////bev[i]인지 mem[3]인지 확실하게 체크!
+		gets_s(bev[i].nick, sizeof(bev[i].nick));
 		if (bev[i].nick[0] == (char)NULL) //Enter
 		{
 			system("cls");
-			printf("%s %s %s \n", bev[i].size_name, bev[i].hclabel, bev[i].menuname);
+			printf("'%s %s %s' 레시피가 완성되었습니다. \n\n", bev[i].size_name, bev[i].hclabel, bev[i].menuname);
 		}
 		else
 		{
 			system("cls");
-			printf("%s\n", bev[i].nick);
+			printf("'%s' 레시피가 완성되었습니다. \n\n", bev[i].nick);
 		}
 
 		/* STEP 13
 		추가 주문 여부 확인
 		*/
 
-		/* STEP 14
-		개인컵 존재 여부
-		*/
+		printf("===============================================\n\n");
 
-		printf("개인 컵을 가지고 오셨습니까?? %s 님?? (Y/N)\n", bev[i].name);
-		printf("개인 컵이 있으시면 300원 할인 가능합니다.\n");
-
+		printf("또 다른 음료를 추가하시겠습니까? (Y/N)\n");
+		printf("최대 2잔까지 추가 가능합니다.(총 3잔 주문가능)\n");
 		while (1)
 		{
-			scanf_s("%c", &bev[i].cup, sizeof(bev[i].cup));
-
-			if (bev[i].cup == 'Y' || bev[i].cup == 'y')
+			bev_again = getchar();
+			fflush(stdin);
+			//scanf_s("%c", &bev_again, sizeof(bev_again));
+			if (bev_again == 'Y' || bev_again == 'y')
 			{
+				i++;
 				system("cls");
-				printf("개인컵을 가지고 오셨습니다. 300원이 할인 되었습니다! \n");
-				// 추가주문 고려해서 AND구문으로 할인 양 조절할 수 있게 하자.
-				totalprice -= 300;
 				break;
 			}
-			else if (bev[i].cup == 'N' || bev[i].cup == 'n')
+			else if (bev_again == 'N' || bev_again == 'n')
 			{
+				j = i;
+				//printf("NNNNNNNNNNN\n");
+				i = 3; //	for (i = 0; i < 3;)
 				system("cls");
-				printf("개인컵이 없으십니다. 할인이 적용되지 않습니다! \n");
 				break;
 			}
 			else
 			{
-				system("cls");
-				printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n개인컵 있으십니까? (Y/N) \n");
+				printf("잘못 입력하셨습니다. 제대로 입력해주세요. \n");
 			}
-		}
+		}//while(1)
+		//break;
+	}//for (i = 0; i < 3;)
 
-		/* STEP 15
-		최종 가격정보 출력
-		*/
-		//회원이고 옵션을 선택했으면 1회 extra무료
-		if (bev[i].yesmem == 1 && bev[i].opt_choice == 1)
+	system("cls");
+	if (bev_again == 'Y' || bev_again == 'y')
+	{
+		printf("총 %d 잔을 주문한셨습니다.\n\n", i + 1);
+	}
+	else if (bev_again == 'N' || bev_again == 'n')
+	{
+		printf("총 %d 잔을 주문한셨습니다.\n\n", j + 1);
+	}
+	printf("===============================================\n\n");
+
+	/* STEP 14
+	개인컵 존재 여부
+	*/
+
+	printf("개인 컵을 가지고 오셨습니까?? %s 님?? (Y/N)\n", name);
+	printf("개인 컵이 있으시면 300원 할인 가능합니다.\n");
+
+	while (1)
+	{
+
+		//scanf_s("%c", &bev[i].cup, sizeof(bev[i].cup));
+		bev[i].cup = getchar();
+		fflush(stdin);
+		if (bev[i].cup == 'Y' || bev[i].cup == 'y')
 		{
-			totalprice -= 600;
+			system("cls");
+			printf("개인컵을 가지고 오셨습니다. 300원이 할인 되었습니다! \n\n");
+			// 추가주문 고려해서 AND구문으로 할인 양 조절할 수 있게 하자.
+			totalprice -= 300;
+			break;
+		}
+		else if (bev[i].cup == 'N' || bev[i].cup == 'n')
+		{
+			system("cls");
+			printf("개인컵이 없으십니다. 할인이 적용되지 않습니다! \n\n");
+			break;
 		}
 		else
 		{
-			totalprice -= 0;
+			system("cls");
+			printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n개인컵 있으십니까? (Y/N) \n");
 		}
+	}
 
-		printf("\n최종 결제금액은 %d입니다. \n\n", totalprice);
+	/* STEP 15
+	최종 가격정보 출력
+	*/
+	//회원이고 옵션을 선택했으면 1회 extra무료
+	if (yesmem == 1 && bev[i].opt_choice == 1)
+	{
+		totalprice -= 600;
+	}
+	else
+	{
+		totalprice -= 0;
+	}
+	printf("===============================================\n");
 
-
-
-		/* STEP 16
-		포인트 사용
-		*/
-
-		if (bev[i].yesmem == 1)
-		{
-			printf("회원님께서 현재 가지고 계신 적립 포인트는 %d 입니다. \n", bev[i].valuepoint);
-			printf("포인트를 사용하시겠습니까?? (Y/N) \n");
-
-			while (1)
-			{
-				getchar();
-				scanf_s("%c", &bev[i].pch, sizeof(bev[i].pch));
-
-				if (bev[i].pch == 'Y' || bev[i].pch == 'y') //포인트 사용
-				{
-					printf("포인트에서 얼마를 차감하시겠습니까? \n");
-					scanf_s("%d", &bev[i].pomin, sizeof(bev[i].pomin));
-
-					bev[i].valuepoint -= bev[i].pomin;
-					totalprice -= bev[i].pomin;
-
-					system("cls");
-					printf("잔여 포인트는 %d 입니다. \n", bev[i].valuepoint);
-					printf("현금결제 하실 금액은 %d 입니다. \n", totalprice);
-					break;
-				}
-				else if (bev[i].pch == 'N' || bev[i].pch == 'n')
-				{
-					system("cls");
-					printf("현금결제 하실 금액은 %d 입니다. \n", totalprice);
-					break;
-				}
-				else
-				{
-					printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n포인트를 사용하시겠습니까? (Y/N) \n");
-				}
-			}
+	printf("\n최종 결제금액은 %d입니다. \n\n", totalprice);
 
 
-		}//if (mem1.yesmem == 1)
-		else if (bev[i].yesmem == 0)
-		{
-			printf("비회원이시므로 포인트 결제가 불가능 합니다. \n");
-			printf("현금결제 하실 금액은 %d 입니다. \n", totalprice);
-			//break;
-		}
 
-		/* STEP 17
-		현금 결제 및 잔돈
-		*/
-		///////////////수정 필요하다. 좀 더 깔끔하게!!
-		// 잔돈 0원이어도 현금 입력을 받는다 - 이 부분 수정!
+	/* STEP 16
+	포인트 사용
+	*/
+
+	if (yesmem == 1 && valuepoint != 0)
+	{
+		printf("회원님께서 현재 가지고 계신 적립 포인트는 %d 입니다. \n", valuepoint);
+		printf("포인트를 사용하시겠습니까?? (Y/N) \n");
 
 		while (1)
 		{
-			printf("현금을 주세요. \n");
-			scanf_s("%d", &bev[i].cash, sizeof(bev[i].cash));
+			pch = getchar();
+			fflush(stdin);
+			if (pch == 'Y' || pch == 'y') //포인트 사용
+			{
+				printf("포인트에서 얼마를 차감하시겠습니까? \n");
+				scanf_s("%d", &pomin, sizeof(pomin));
 
-			if (bev[i].cash < totalprice)
+				valuepoint -= pomin;
+				totalprice -= pomin;
+
+				system("cls");
+				printf("잔여 포인트는 %d 입니다. \n", valuepoint);
+
+				if (totalprice != 0)
+				{
+					printf("현금결제 하실 금액은 %d 입니다. \n", totalprice);
+				}
+				else
+				{
+					printf("포인트로 모두 결제하셨으므로 현금결제를 진행하지 않습니다. \n");
+				}
+				break;
+			}
+			else if (pch == 'N' || pch == 'n')
 			{
 				system("cls");
 				printf("현금결제 하실 금액은 %d 입니다. \n", totalprice);
-				printf("%d만큼이 부족합니다. 부족한 금액을 더 주세요. \n", totalprice - bev[i].cash);
-			}
-			else// if (bev[i].cash >= totalprice)
-			{
-				system("cls");
-				printf("현금 총 %d를 받았습니다. \n잔돈은 %d 입니다.\n", bev[i].cash, bev[i].cash - totalprice);
 				break;
 			}
-			totalprice -= bev[i].cash;
-			//mem1.cash += mem1.cash;
+			else
+			{
+				printf("잘못 입력하셨습니다. 'Y' 또는 'N'을 제대로 입력해주세요. \n포인트를 사용하시겠습니까? (Y/N) \n");
+			}
 		}
-		/* STEP 18
-		음료주문이 들어감
-		*/
-		printf("주문하신 블라블라가 주문들어갔습니다. 3초 뒤에 음료가 완성됩니다. 잠시만 기다려주세요! \n");
+	}//if (mem1.yesmem == 1)
+	else if (yesmem == 1 && valuepoint == 0)
+	{
+		printf("회원이시지만 소유하신 포인트가 없으므로 포인트 결제가 불가능합니다. \n");
+		printf("현금결제 하실 금액은 %d 입니다. \n", totalprice);
+	}
+	else if (yesmem == 0)
+	{
+		printf("비회원이시므로 포인트 결제가 불가능 합니다. \n");
+		printf("현금결제 하실 금액은 %d 입니다. \n", totalprice);
+		//break;
+	}
+
+	/* STEP 17
+	현금 결제 및 잔돈
+	*/
+	///////////////수정 필요하다. 좀 더 깔끔하게!!
+	// 잔돈 0원이어도 현금 입력을 받는다 - 이 부분 수정!
+	while (totalprice != 0)
+		//while (1)
+	{
+		printf("지불하실 현금을 입력해 주세요. \n");
+		scanf_s("%d", &cash, sizeof(cash));
+
+		if (cash < totalprice)
+		{
+			system("cls");
+			//printf("현금결제 하실 금액은 %d 입니다. \n", totalprice);
+			printf("%d만큼이 부족합니다. 부족한 금액을 더 주세요. \n", totalprice - cash);
+		}
+		else if (cash > totalprice)
+		{
+			system("cls");
+			printf("현금 총 %d를 받았습니다. \n잔돈은 %d 입니다.\n", cash, cash - totalprice);
+			break;
+		}
+		totalprice -= cash;
+		//mem1.cash += mem1.cash;
+	}
+
+	/* STEP 18
+	음료주문이 들어감
+	*/
+	printf("엔터를 누르면 음료의 주문이 들어갑니다. 주문이 들어간 뒤 3초 뒤에 음료가 완성됩니다. 잠시만 기다려주세요! \n");
+
+	getchar();
+	gets_s(order_fin, sizeof(order_fin));
+	if (order_fin[0] == (char)NULL) //Enter
+	{
 		Sleep(1000);
 		system("cls");
 		printf(". \n");
@@ -1093,25 +1172,11 @@ int main(void)
 		printf("... \n");
 		system("cls");
 		printf("음료가 완성되었습니다!\n");
-
-		/* STEP 19
-		END
-		*/
-		printf("사이렌 오더(Siren Order)를 이용해주셔서 감사합니다! \n");
-		//system("PAUSE"); // Wait to exit program till the key input
-
-		//일단 구조체 증가 하게 할 수 있음을 확인, 위치를 수정해서 음료에 대한 구조체 변수만 바뀌도록 다시 수정하자.
-		printf("Keep going?\n");
-		scanf_s("%d", &again);
-		if (again == 1)
-		{
-			i = 3;
-		}
-		else
-		{
-			i++;
-		}
-	}//for(i=0;;)
+	}
+	/* STEP 19
+	END
+	*/
+	printf("사이렌 오더(Siren Order)를 이용해주셔서 감사합니다! \n");
 
 
 	return 0;

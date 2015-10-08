@@ -60,6 +60,8 @@ int Option_Again(void)
 	{
 		getchar();
 		printf("또 다른 옵션을 선택하시겠습니까? (Y/N) \n");
+		//opt_again= getchar();
+		//fflush(stdin);
 		scanf_s("%c", &opt_again, sizeof(opt_again));
 		// 구조체 안에서 변수를 설정하지 말고, 이 함수 내에서 변수로 설정을 하자
 		if (opt_again == 'Y' || opt_again == 'y')
