@@ -74,6 +74,7 @@ struct drink //member //dri
 	char *opt_driz_subname;
 	char *opt_driz_sizename;
 	char opt_driz_again;
+
 };
 
 
@@ -91,6 +92,9 @@ int main(void)
 	int optre = 1;
 
 	int again;
+
+	char order_check[300]; // for order display
+	order_check[0] = 0;
 
 	/*	STEP 01
 	Siren Order 시작하기
@@ -351,7 +355,7 @@ int main(void)
 			printf("퍼스널 옵션으로 나만의 음료를 만드시겠습니까? \n");
 			printf("\n1. 예, 옵션을 선택합니다. \n2. 아니요, 옵션을 선택하지 않습니다. \n");
 			scanf_s("%d", &bev[i].opt_choice);
-
+			
 			if (bev[i].opt_choice == 1)//퍼스널 옵션 선택함
 			{
 				while (optre != 0)
@@ -364,6 +368,7 @@ int main(void)
 					{
 						Option();
 						scanf_s("%d", &bev[i].opt1);
+						char buffer[50]; // temporary space for saving order
 
 						if (bev[i].opt1 == 1)//커피 샷추가
 						{
@@ -372,7 +377,11 @@ int main(void)
 							printf("%s 옵션을 선택하셨습니다. 0~9번 추가 가능하십니다. 원하는 값을 입력해주세요. \n", bev[i].opt_name);
 							scanf_s("%d", &bev[i].opt_shot);
 							totalprice += bev[i].opt_shot * 600;
-							printf("%s를 %d 회 하셨습니다.\n", bev[i].opt_name, bev[i].opt_shot);
+
+							sprintf_s(buffer,sizeof(buffer),"%s를 %d 회 하셨습니다.\n", bev[i].opt_name, bev[i].opt_shot);
+							strcat_s(order_check, sizeof(order_check), buffer);
+							puts(buffer);
+
 
 
 							optre = Option_Again();	//Option 반복 함수
@@ -394,7 +403,9 @@ int main(void)
 								{
 									bev[i].opt_esp_name = "과테말라";
 									system("cls");
-									printf("'%s'를 선택하셨습니다. \n", bev[i].opt_esp_name);
+									sprintf_s(buffer,sizeof(buffer),"'%s'를 선택하셨습니다. \n", bev[i].opt_esp_name);
+									strcat_s(order_check, sizeof(order_check),buffer);
+									puts(buffer);
 
 									optre = Option_Again();	//Option 반복 함수
 									break;
@@ -404,8 +415,11 @@ int main(void)
 								{
 									bev[i].opt_esp_name = "Esp.C";
 									system("cls");
-									printf("'%s'를 선택하셨습니다. \n", bev[i].opt_esp_name);
+									sprintf_s(buffer,sizeof(buffer),"'%s'를 선택하셨습니다. \n", bev[i].opt_esp_name);
 									totalprice += 300;
+									
+									strcat_s(order_check, sizeof(order_check),buffer);
+									puts(buffer);
 
 									optre = Option_Again();	//Option 반복 함수
 									break;
@@ -874,6 +888,8 @@ int main(void)
 		system("cls");
 		printf("%s님! 주문 내역을 확인하겠습니다. \n", bev[i].name);
 		printf("음료 %s %s %s 를 선택하셨습니다. \n", bev[i].size_name, bev[i].hclabel, bev[i].menuname);
+
+		printf("%s\n", order_check);
 		///////////////////옵션 주문내역 출력하기
 		//	1st Try
 		/*for (bev[i].in = 1; bev[i].in = 8; mem1.in++)
