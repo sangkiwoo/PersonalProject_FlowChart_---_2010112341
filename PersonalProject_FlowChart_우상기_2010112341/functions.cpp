@@ -1,3 +1,10 @@
+/*
+우 상기(SANGKI, WOO) / 2010112341
+
+Personal Project
+Make Siren Order using Flow Chart
+*/
+
 #include "functions.h"
 #include <stdio.h>
 #include <string.h>		// String Header
@@ -7,7 +14,7 @@
 #include <conio.h>		// Console Input Output Error
 
 /*
-메뉴 목록을 표시하는 함수 만들기
+메뉴 음료 목록을 표시하는 함수 만들기
 */
 void Menulist()
 {
@@ -53,7 +60,7 @@ Option 반복 함수
 */
 int Option_Again(void)
 {
-	char opt_again;
+	char opt_again; // 
 	int a;
 
 	while (1)
