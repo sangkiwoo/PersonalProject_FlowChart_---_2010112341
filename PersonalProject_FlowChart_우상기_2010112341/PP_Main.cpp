@@ -20,7 +20,7 @@ Make Siren Order using Flow Chart
 struct drink //member //dri
 {
 
-
+	int optre = 1;
 	//int point;	//포인트카드 적립금
 	//int yesmem = 0;	//회원 유무
 	int menunum;	//메뉴 번호
@@ -74,6 +74,11 @@ struct drink //member //dri
 	char *opt_driz_subname;
 	char *opt_driz_sizename;
 	char opt_driz_again;
+
+	char buffer[100]; //temporary space for saving order
+	char order_check[500];	//for order display
+	//bev[i].order_check[0] = 0;
+
 };
 
 
@@ -88,8 +93,9 @@ int main(void)
 	int totalprice = 0;
 	int start;
 	int i; //drink increase - bev[i]
-	int j;
-	int optre = 1;
+	int j = 0;
+	int k;
+	//int bev[i].optre = 1;
 
 	char bev_again; //또 다른 음료 주문 확인
 
@@ -106,9 +112,11 @@ int main(void)
 	char order_fin[100];
 	char pch = 0;
 
-	char order_check[500];	//for order display
-	order_check[0] = 0;
-
+	//char order_check[500];	//for order display
+	//bev[i].order_check[0] = 0;
+	bev[0].order_check[0] = 0;
+	bev[1].order_check[0] = 0;
+	bev[2].order_check[0] = 0;
 
 	/*	STEP 01
 	Siren Order 시작하기
@@ -374,11 +382,14 @@ int main(void)
 		{
 			printf("퍼스널 옵션으로 나만의 음료를 만드시겠습니까? \n");
 			printf("\n1. 예, 옵션을 선택합니다. \n2. 아니요, 옵션을 선택하지 않습니다. \n");
-			scanf_s("%d", &bev[i].opt_choice);
-
+			//bev[i].opt_choice = getchar();
+			//fflush(stdin);
+			//getchar();
+			scanf_s("%d", &bev[i].opt_choice, sizeof(bev[i].opt_choice));
+			
 			if (bev[i].opt_choice == 1)//퍼스널 옵션 선택함
 			{
-				while (optre != 0)
+				while (bev[i].optre != 0)
 				{
 					system("cls");
 					printf("퍼스널 옵션으로 나만의 음료 만들기 \n");
@@ -388,7 +399,7 @@ int main(void)
 					{
 						Option();
 						scanf_s("%d", &bev[i].opt1);
-						char buffer[50]; //temporary space for saving order
+						//char bev[i].buffer[50]; //temporary space for saving order
 
 						if (bev[i].opt1 == 1)//커피 샷추가
 						{
@@ -398,11 +409,11 @@ int main(void)
 							scanf_s("%d", &bev[i].opt_shot);
 							totalprice += bev[i].opt_shot * 600;
 
-							sprintf_s(buffer, sizeof(buffer), "%s를 %d회 추가하셨습니다. \n", bev[i].opt_name, bev[i].opt_shot);
-							strcat_s(order_check, sizeof(order_check), buffer);
-							puts(buffer);
+							sprintf_s(bev[i].buffer, sizeof(bev[i].buffer), "%s를 %d회 추가하셨습니다. \n", bev[i].opt_name, bev[i].opt_shot);
+							strcat_s(bev[i].order_check, sizeof(bev[i].order_check), bev[i].buffer);
+							puts(bev[i].buffer);
 
-							optre = Option_Again();	//Option 반복 함수
+							bev[i].optre = Option_Again();	//Option 반복 함수
 							break;
 						}//if (mem1.opt1 == 1)//커피 샷추가
 
@@ -420,10 +431,10 @@ int main(void)
 								{
 									bev[i].opt_esp_name = "과테말라";
 									system("cls");
-									sprintf_s(buffer, sizeof(buffer), "'%s'를 선택하셨습니다. \n", bev[i].opt_esp_name);
-									strcat_s(order_check, sizeof(order_check), buffer);
+									sprintf_s(bev[i].buffer, sizeof(bev[i].buffer), "%s로 '%s'를 선택하셨습니다. \n", bev[i].opt_name, bev[i].opt_esp_name);
+									strcat_s(bev[i].order_check, sizeof(bev[i].order_check), bev[i].buffer);
 
-									optre = Option_Again();	//Option 반복 함수
+									bev[i].optre = Option_Again();	//Option 반복 함수
 									break;
 								}
 
@@ -432,10 +443,10 @@ int main(void)
 									bev[i].opt_esp_name = "Esp.C";
 									system("cls");
 									totalprice += 300;
-									sprintf_s(buffer, sizeof(buffer), "'%s'를 선택하셨습니다. \n", bev[i].opt_esp_name);
-									strcat_s(order_check, sizeof(order_check), buffer);
+									sprintf_s(bev[i].buffer, sizeof(bev[i].buffer), "%s로 '%s'를 선택하셨습니다. \n", bev[i].opt_name, bev[i].opt_esp_name);
+									strcat_s(bev[i].order_check, sizeof(bev[i].order_check), bev[i].buffer);
 
-									optre = Option_Again();	//Option 반복 함수
+									bev[i].optre = Option_Again();	//Option 반복 함수
 									break;
 								}
 								else
@@ -495,8 +506,8 @@ int main(void)
 								scanf_s("%d", &bev[i].opt_sy_time);
 								totalprice += bev[i].opt_sy_time * 600;
 
-								sprintf_s(buffer, sizeof(buffer), "%s 추가를 %d 회 하셨습니다.\n\n", bev[i].opt_sy_name, bev[i].opt_sy_time);
-								strcat_s(order_check, sizeof(order_check), buffer);
+								sprintf_s(bev[i].buffer, sizeof(bev[i].buffer), "%s 추가를 %d 회 하셨습니다.\n\n", bev[i].opt_sy_name, bev[i].opt_sy_time);
+								strcat_s(bev[i].order_check, sizeof(bev[i].order_check), bev[i].buffer);
 
 								//getchar();
 								printf("또 다른 시럽을 추가하시겠습니까? (Y/N) \n");
@@ -524,7 +535,7 @@ int main(void)
 								}//while(1) 
 							}//while (mem1.opt_sy_rep != 0)
 
-							optre = Option_Again();	//Option 반복 함수
+							bev[i].optre = Option_Again();	//Option 반복 함수
 							break;
 						}//else if (mem1.opt1 == 3) 
 
@@ -577,10 +588,10 @@ int main(void)
 								}//while(1)
 								system("cls");
 
-								sprintf_s(buffer, sizeof(buffer), "%s를 %s선택하셨습니다. \n", bev[i].opt_bo_name, bev[i].opt_bo_subname);
-								strcat_s(order_check, sizeof(order_check), buffer);
+								sprintf_s(bev[i].buffer, sizeof(bev[i].buffer), "%s를 %s선택하셨습니다. \n", bev[i].opt_bo_name, bev[i].opt_bo_subname);
+								strcat_s(bev[i].order_check, sizeof(bev[i].order_check), bev[i].buffer);
 
-								optre = Option_Again();	//Option 반복 함수
+								bev[i].optre = Option_Again();	//Option 반복 함수
 							}//if (mem1.opt_bo == 1)//물 선택
 
 							if (bev[i].opt_bo_num == 2)//리드 선택
@@ -616,10 +627,10 @@ int main(void)
 								system("cls");
 
 
-								sprintf_s(buffer, sizeof(buffer), "%s를 선택하셨습니다. \n", bev[i].opt_lid_name);
-								strcat_s(order_check, sizeof(order_check), buffer);
+								sprintf_s(bev[i].buffer, sizeof(bev[i].buffer), "%s를 선택하셨습니다. \n", bev[i].opt_lid_name);
+								strcat_s(bev[i].order_check, sizeof(bev[i].order_check), bev[i].buffer);
 
-								optre = Option_Again();	//Option 반복 함수
+								bev[i].optre = Option_Again();	//Option 반복 함수
 
 							}//if (mem1.opt_bo == 2)//리드 선택
 
@@ -655,12 +666,12 @@ int main(void)
 								}//while(1)
 								system("cls");
 
-								sprintf_s(buffer, sizeof(buffer), "우유공간을 %s \n", bev[i].opt_milk_name);
-								strcat_s(order_check, sizeof(order_check), buffer);
+								sprintf_s(bev[i].buffer, sizeof(bev[i].buffer), "우유공간을 %s \n", bev[i].opt_milk_name);
+								strcat_s(bev[i].order_check, sizeof(bev[i].order_check), bev[i].buffer);
 
 
 
-								optre = Option_Again();	//Option 반복 함수
+								bev[i].optre = Option_Again();	//Option 반복 함수
 
 							}//if (mem1.opt_bo == 2)//리드 선택
 							break;
@@ -686,7 +697,7 @@ int main(void)
 								}
 								else if (bev[i].opt_ice_mag == 2)	//보통
 								{
-									bev[i].opt_ice_subname = "보통";
+									bev[i].opt_ice_subname = "보통으로";
 									break;
 								}
 								else if (bev[i].opt_ice_mag == 3)	//많이
@@ -707,10 +718,10 @@ int main(void)
 							}//while(1)
 							system("cls");
 
-							sprintf_s(buffer, sizeof(buffer), "%s를 선택하셨습니다. \n", bev[i].opt_ice_subname);
-							strcat_s(order_check, sizeof(order_check), buffer);
+							sprintf_s(bev[i].buffer, sizeof(bev[i].buffer), "%s를 %s 선택하셨습니다. \n", bev[i].opt_name, bev[i].opt_ice_subname);
+							strcat_s(bev[i].order_check, sizeof(bev[i].order_check), bev[i].buffer);
 
-							optre = Option_Again();	//Option 반복 함수
+							bev[i].optre = Option_Again();	//Option 반복 함수
 							break;
 						}//	else if (mem1.opt1 == 5) // 얼음
 
@@ -761,13 +772,13 @@ int main(void)
 
 								system("cls");
 
-								sprintf_s(buffer, sizeof(buffer), "%s을 선택하셨습니다. \n", bev[i].opt_whip_name);
-								strcat_s(order_check, sizeof(order_check), buffer);
+								sprintf_s(bev[i].buffer, sizeof(bev[i].buffer), "%s로 %s을 선택하셨습니다. \n", bev[i].opt_name, bev[i].opt_whip_name);
+								strcat_s(bev[i].order_check, sizeof(bev[i].order_check), bev[i].buffer);
 
 								break;
 							}//while (mem1.opt_whip_rep != 0)
 
-							optre = Option_Again();	//Option 반복 함수
+							bev[i].optre = Option_Again();	//Option 반복 함수
 							break;
 						}//else if (mem1.opt1 == 6)//휘핑 옵션
 
@@ -850,17 +861,16 @@ int main(void)
 
 								system("cls");
 
-								sprintf_s(buffer, sizeof(buffer), "%s드리즐을 %s 만큼 선택하셨습니다. \n", bev[i].opt_driz_name, bev[i].opt_driz_sizename);
-								strcat_s(order_check, sizeof(order_check), buffer);
+								sprintf_s(bev[i].buffer, sizeof(bev[i].buffer), "%s드리즐을 %s 만큼 선택하셨습니다. \n", bev[i].opt_driz_name, bev[i].opt_driz_sizename);
+								strcat_s(bev[i].order_check, sizeof(bev[i].order_check), bev[i].buffer);
 
 								//getchar();
 								printf("또 다른 드리즐을 추가하시겠습니까? (Y/N) \n");
 
 								while (1)
 								{
-									//scanf_s("%c", &bev[i].opt_driz_again, sizeof(bev[i].opt_driz_again));
-									bev[i].opt_driz_again = getchar();
-									fflush(stdin);
+									scanf_s("%c", &bev[i].opt_driz_again, sizeof(bev[i].opt_driz_again));
+								
 									if (bev[i].opt_driz_again == 'Y' || bev[i].opt_driz_again == 'y')
 									{
 										bev[i].opt_driz_rep = 1;
@@ -878,7 +888,7 @@ int main(void)
 								}//while(1) 
 							}//while (mem1.opt_whip_rep != 0)
 
-							optre = Option_Again();	//Option 반복 함수
+							bev[i].optre = Option_Again();	//Option 반복 함수
 							break;
 						}//else if (mem1.opt1 == 7) //드리즐 옵션
 
@@ -889,11 +899,13 @@ int main(void)
 						}
 					}
 
-				}//while (optre != 0)
+				}//while (bev[i].optre != 0)
 				break;
 			}
 			else if (bev[i].opt_choice == 2) //퍼스널 옵션 선택 안 함
 			{
+				sprintf_s(bev[i].buffer, sizeof(bev[i].buffer), "퍼스널 옵션 없음. \n");
+				strcat_s(bev[i].order_check, sizeof(bev[i].order_check), bev[i].buffer);
 
 				break;
 			}
@@ -922,20 +934,25 @@ int main(void)
 		*/
 		system("cls");
 		printf("%s님! 주문 내역을 확인하겠습니다. \n\n", name);
+
+		//for (i = 0; i = j; i++)//for (i = 0; i < 3;)
+		//{
 		printf("음료 %s %s %s 를 선택하셨습니다. \n", bev[i].size_name, bev[i].hclabel, bev[i].menuname);
 
 		//	if (bev[i].opt_choice == 1)
 		//	{
 
 		printf("퍼스널 옵션 선택사항은 다음과 같습니다. \n");
-		printf("%s\n", order_check);
+		puts(bev[i].order_check);
+
+		//printf("%s\n", bev[i].order_check);
 		//	}
 		//	else //personal option 을 선택하지 않은경우
 		//	{
 		//		printf("\n");
 		//	}
 		printf("===============================================\n\n");
-
+		//}
 
 		/* STEP 12
 		음료 이름 정하기
@@ -971,9 +988,19 @@ int main(void)
 			//scanf_s("%c", &bev_again, sizeof(bev_again));
 			if (bev_again == 'Y' || bev_again == 'y')
 			{
-				i++;
-				system("cls");
-				break;
+				if (i < 3)
+				{
+
+					j = i;
+					i++;
+					system("cls");
+					break;
+				}
+				else
+				{
+					printf("3잔 이상은 주문 불가능합니다. \n");
+					break;
+				}
 			}
 			else if (bev_again == 'N' || bev_again == 'n')
 			{
@@ -990,17 +1017,26 @@ int main(void)
 		}//while(1)
 		//break;
 	}//for (i = 0; i < 3;)
+	//k = j+1;
 
-	system("cls");
-	if (bev_again == 'Y' || bev_again == 'y')
+	//system("cls");
+	printf("%s님! 최종주문 내역을 확인하겠습니다. \n\n", name);
+	printf("총 %d 잔을 주문한셨습니다.\n\n", j + 1);
+
+	for (i = 0; i < j + 1; i++)
 	{
-		printf("총 %d 잔을 주문한셨습니다.\n\n", i + 1);
+		printf("음료 %d : ", i + 1);
+		puts(bev[i].nick);
+		printf("%s %s %s. \n\n", bev[i].hclabel, bev[i].menuname, bev[i].size_name);
+		puts(bev[i].order_check);
+		//	printf("%s\n", bev[k].order_check);
 	}
-	else if (bev_again == 'N' || bev_again == 'n')
-	{
-		printf("총 %d 잔을 주문한셨습니다.\n\n", j + 1);
-	}
+	//	else //personal option 을 선택하지 않은경우
+	//	{
+	//		printf("\n");
+	//	}
 	printf("===============================================\n\n");
+	//}
 
 	/* STEP 14
 	개인컵 존재 여부
@@ -1142,13 +1178,14 @@ int main(void)
 	/* STEP 18
 	음료주문이 들어감
 	*/
-	printf("엔터를 누르면 음료의 주문이 들어갑니다. 주문이 들어간 뒤 3초 뒤에 음료가 완성됩니다. 잠시만 기다려주세요! \n");
+	//system("cls");
+	printf("엔터를 누르면 음료의 주문이 들어갑니다. \n주문이 들어간 뒤 잠시 뒤에 음료가 완성됩니다. 잠시만 기다려주세요! \n");
 
 	getchar();
 	gets_s(order_fin, sizeof(order_fin));
 	if (order_fin[0] == (char)NULL) //Enter
 	{
-		Sleep(1000);
+		//Sleep(1000);
 		system("cls");
 		printf(". \n");
 		Sleep(500);
@@ -1170,13 +1207,14 @@ int main(void)
 		Sleep(500);
 		system("cls");
 		printf("... \n");
+		Sleep(500);
 		system("cls");
-		printf("음료가 완성되었습니다!\n");
+		printf("주문하신 음료가 완성되었습니다!\n");
 	}
 	/* STEP 19
 	END
 	*/
-	printf("사이렌 오더(Siren Order)를 이용해주셔서 감사합니다! \n");
+	printf("사이렌 오더(Siren Order)를 이용해주셔서 감사합니다! \n\n");
 
 
 	return 0;
